@@ -62,6 +62,7 @@ class DefaultFirebaseOptions {
     messagingSenderId: '38384210019',
     projectId: 'minhas-moedas-app',
     storageBucket: 'minhas-moedas-app.appspot.com',
+    androidClientId: '38384210019-lqj9t5urabqr0o60211744tjgfs01lh9.apps.googleusercontent.com',
     iosClientId: '38384210019-4sd6o1hpot7d5nksd58trgkmabuh988j.apps.googleusercontent.com',
     iosBundleId: 'br.eng.pedromendes.myCoins',
   );

@@ -14,6 +14,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "38384210019-lqj9t5urabqr0o60211744tjgfs01lh9.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "br.eng.pedro_mendes.my_coins",
+            "certificate_hash": "fb863aab9a1d8d0f225749d57da4b0ea102af526"
+          }
+        },
+        {
           "client_id": "38384210019-1ggtoqnlbt7pjrpq9ed368mn5jt0bd3t.apps.googleusercontent.com",
           "client_type": 3
         }
@@ -29,6 +37,13 @@
             {
               "client_id": "38384210019-1ggtoqnlbt7pjrpq9ed368mn5jt0bd3t.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "38384210019-4sd6o1hpot7d5nksd58trgkmabuh988j.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "br.eng.pedromendes.myCoins"
+              }
             }
           ]
         }
