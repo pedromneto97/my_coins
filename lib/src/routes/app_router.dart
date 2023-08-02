@@ -17,5 +17,8 @@ class AppRouter extends _$AppRouter {
         AutoRoute(
           page: LoginRoute.page,
         ),
+        AutoRoute(
+          page: HomeRoute.page,
+        ),
       ];
 }
