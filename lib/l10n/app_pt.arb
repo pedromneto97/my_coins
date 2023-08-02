@@ -1,0 +1,6 @@
+{
+  "myCoins": "Minhas moedas",
+  "@myCoins": {
+    "description": "Application name"
+  }
+}
