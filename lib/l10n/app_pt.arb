@@ -2,5 +2,29 @@
   "myCoins": "Minhas moedas",
   "@myCoins": {
     "description": "Application name"
+  },
+  "welcome": "Bem-vindo!",
+  "@welcome": {
+    "description": "Welcome message"
+  },
+  "myCollection": "Minha coleção",
+  "@myCollection": {
+    "description": "My collection"
+  },
+  "myCollectionDescription": "Aqui você pode ver todas as coleções que você tem.",
+  "@myCollectionDescription": {
+    "description": "My collection description"
+  },
+  "collections": "Coleções",
+  "@collections": {
+    "description": "Collections"
+  },
+  "collectionsDescription": "Aqui você pode as coleções de outras pessoas.",
+  "@collectionsDescription": {
+    "description": "Collections description"
+  },
+  "profile": "Perfil",
+  "@profile": {
+    "description": "Profile"
   }
 }
