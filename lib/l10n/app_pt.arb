@@ -7,12 +7,12 @@
   "@welcome": {
     "description": "Welcome message"
   },
-  "myCollection": "Minha coleção",
-  "@myCollection": {
-    "description": "My collection"
+  "myCollections": "Minhas coleções",
+  "@myCollections": {
+    "description": "My collections"
   },
-  "myCollectionDescription": "Aqui você pode ver todas as coleções que você tem.",
-  "@myCollectionDescription": {
+  "myCollectionsDescription": "Aqui você pode ver todas as coleções que você tem.",
+  "@myCollectionsDescription": {
     "description": "My collection description"
   },
   "collections": "Coleções",

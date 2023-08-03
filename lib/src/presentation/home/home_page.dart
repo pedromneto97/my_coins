@@ -24,9 +24,10 @@ class HomePage extends StatelessWidget {
       ),
       body: Column(
         children: [
+          const Divider(),
           ListTile(
-            title: Text(strings.myCollection),
-            subtitle: Text(strings.myCollectionDescription),
+            title: Text(strings.myCollections),
+            subtitle: Text(strings.myCollectionsDescription),
             leading: const Icon(Icons.collections_bookmark_rounded),
             trailing: const Icon(Icons.arrow_forward_ios_rounded),
           ),
