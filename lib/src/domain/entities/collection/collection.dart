@@ -3,6 +3,7 @@ import 'package:equatable/equatable.dart';
 import 'collection_coin.dart';
 
 class Collection extends Equatable {
+  final String id;
   final String name;
   final String templateId;
   final bool canEdit;
@@ -10,6 +11,7 @@ class Collection extends Equatable {
   final bool isPublic;
 
   const Collection({
+    required this.id,
     required this.name,
     required this.templateId,
     required this.canEdit,
@@ -19,6 +21,7 @@ class Collection extends Equatable {
 
   @override
   List<Object?> get props => [
+        id,
         name,
         templateId,
         canEdit,
