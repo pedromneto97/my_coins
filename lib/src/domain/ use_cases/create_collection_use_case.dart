@@ -18,6 +18,7 @@ class CreateCollectionUseCase {
           isPublic: isPublic,
           canEdit: true,
           coins: const [],
+          id: '',
         ),
       );
 }
