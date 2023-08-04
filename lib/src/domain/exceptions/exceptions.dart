@@ -49,3 +49,11 @@ class FailedToAddCoinToCollectionException implements MyCoinsException {
 class FailedToRemoveCoinFromCollectionException implements MyCoinsException {
   const FailedToRemoveCoinFromCollectionException();
 }
+
+class FailedToDeletePhotoException implements MyCoinsException {
+  const FailedToDeletePhotoException();
+}
+
+class FailedToStorePhotoException implements MyCoinsException {
+  const FailedToStorePhotoException();
+}
