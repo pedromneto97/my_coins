@@ -7,7 +7,7 @@ abstract interface class CollectionProvider {
 
   Future<List<Collection>> getUserCollections();
 
-  Future<CollectionWithTemplate> findCollection(String id);
+  Future<Collection> findCollection(String id);
 
   Future<CollectionCoin> addCoinToCollection({
     required String collectionId,
