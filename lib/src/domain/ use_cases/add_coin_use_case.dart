@@ -10,10 +10,11 @@ class AddCoinUseCase {
   final CollectionProvider _collectionProvider;
   final PhotoProvider _photosProvider;
 
-  const AddCoinUseCase(
-    this._collectionProvider,
-    this._photosProvider,
-  );
+  const AddCoinUseCase({
+    required CollectionProvider collectionProvider,
+    required PhotoProvider photosProvider,
+  })  : _collectionProvider = collectionProvider,
+        _photosProvider = photosProvider;
 
   Future<CollectionCoin> call({
     required String collectionId,

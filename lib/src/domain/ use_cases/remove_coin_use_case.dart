@@ -8,10 +8,11 @@ class RemoveCoinUseCase {
   final CollectionProvider _collectionProvider;
   final PhotoProvider _photosProvider;
 
-  const RemoveCoinUseCase(
-    this._collectionProvider,
-    this._photosProvider,
-  );
+  const RemoveCoinUseCase({
+    required CollectionProvider collectionProvider,
+    required PhotoProvider photosProvider,
+  })  : _collectionProvider = collectionProvider,
+        _photosProvider = photosProvider;
 
   Future<void> call({
     required String collectionId,
