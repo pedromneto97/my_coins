@@ -26,5 +26,49 @@
   "profile": "Perfil",
   "@profile": {
     "description": "Profile"
+  },
+  "tryAgain": "Tente novamente",
+  "@tryAgain": {
+    "description": "Try again"
+  },
+  "failedToLoadPage": "Ocorreu um erro ao carregar a página",
+  "@failedToLoadPage": {
+    "description": "Failed to get templates"
+  },
+  "checkYouConnectionAndTryAgain": "Ocorreu um erro ao carregar as informações, verifique sua conexão de internet e tente novamente.",
+  "@checkYouConnectionAndTryAgain": {
+    "description": "Check your connection and try again"
+  },
+  "collectionName": "Nome da coleção",
+  "@collectionName": {
+    "description": "Collection name"
+  },
+  "requiredField": "Campo obrigatório",
+  "@requiredField": {
+    "description": "Required field"
+  },
+  "createCollection": "Criar coleção",
+  "@createCollection": {
+    "description": "Create collection"
+  },
+  "publicCollection": "Coleção pública",
+  "@publicCollection": {
+    "description": "Public collection"
+  },
+  "privateCollection": "Coleção privada",
+  "@privateCollection": {
+    "description": "Private collection"
+  },
+  "beingPublicCollection": "Ao tornar a coleção pública, ela poderá ser vista por qualquer pessoa.",
+  "@beingPublicCollection": {
+    "description": "Being public collection"
+  },
+  "newCollection": "Nova coleção",
+  "@newCollection": {
+    "description": "New collection"
+  },
+  "failedToCreateCollection": "Ocorreu um erro ao criar a coleção, tente novamente.",
+  "@failedToCreateCollection": {
+    "description": "Failed to create collection"
   }
 }
