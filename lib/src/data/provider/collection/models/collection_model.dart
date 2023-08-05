@@ -25,11 +25,14 @@ class CollectionModel {
     SnapshotOptions? options,
   ) {
     final data = snapshot.data()!;
+
     final coinList = <CollectionCoinModel>[];
-    for (final coin in data['coins'] as List<dynamic>) {
-      coinList.add(
-        CollectionCoinModel.fromJson(coin as Map<String, dynamic>),
-      );
+    if (data['coins'] != null && data['coins'] is List<dynamic>) {
+      for (final coin in data['coins']) {
+        coinList.add(
+          CollectionCoinModel.fromJson(coin as Map<String, dynamic>),
+        );
+      }
     }
 
     return CollectionModel(
