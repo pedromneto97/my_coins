@@ -26,7 +26,10 @@ class MyApp extends StatelessWidget {
       onGenerateTitle: (context) => context.strings.myCoins,
       theme: ThemeData(
         useMaterial3: true,
-        colorSchemeSeed: Colors.green,
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: Colors.green.shade900,
+          brightness: Brightness.dark,
+        ),
       ),
     );
   }
