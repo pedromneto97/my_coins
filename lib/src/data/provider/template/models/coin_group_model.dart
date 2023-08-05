@@ -17,6 +17,19 @@ class CoinGroupModel {
     required this.coins,
   });
 
+  factory CoinGroupModel.fromEntity(CoinGroup group) {
+    final coinModelList = <CoinModel>[];
+    for (final coin in group.coins) {
+      coinModelList.add(CoinModel.fromEntity(coin));
+    }
+
+    return CoinGroupModel(
+      name: group.name,
+      isSpecial: group.isSpecial,
+      coins: coinModelList,
+    );
+  }
+
   factory CoinGroupModel.fromJson(Map<String, dynamic> json) => _$CoinGroupModelFromJson(json);
 
   Map<String, dynamic> toJson() => _$CoinGroupModelToJson(this);

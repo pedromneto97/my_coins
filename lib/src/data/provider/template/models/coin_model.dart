@@ -16,6 +16,12 @@ class CoinModel {
     required this.isRare,
   });
 
+  factory CoinModel.fromEntity(Coin coin) => CoinModel(
+        id: coin.id,
+        name: coin.name,
+        isRare: coin.isRare,
+      );
+
   factory CoinModel.fromJson(Map<String, dynamic> json) => _$CoinModelFromJson(json);
 
   Map<String, dynamic> toJson() => _$CoinModelToJson(this);

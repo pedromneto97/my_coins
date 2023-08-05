@@ -14,6 +14,19 @@ class CollectionTemplateModel {
     required this.coinFamily,
   });
 
+  factory CollectionTemplateModel.fromEntity(CollectionTemplate template) {
+    final coinFamilyModelList = <CoinFamilyModel>[];
+    for (final family in template.coinFamily) {
+      coinFamilyModelList.add(CoinFamilyModel.fromEntity(family));
+    }
+
+    return CollectionTemplateModel(
+      id: template.id,
+      defaultName: template.defaultName,
+      coinFamily: coinFamilyModelList,
+    );
+  }
+
   factory CollectionTemplateModel.fromJson(
     DocumentSnapshot<Map<String, dynamic>> snapshot,
     SnapshotOptions? options,
