@@ -10,7 +10,7 @@ class HomePage extends StatelessWidget {
 
   void _onTapProfile(BuildContext context) => context.router.push(const ProfileRoute());
 
-  void _onTapMyCollection(BuildContext context) {}
+  void _onTapMyCollection(BuildContext context) => context.router.push(const UserCollectionsRoute());
 
   void _onTapCollections(BuildContext context) {}
 
@@ -32,6 +32,7 @@ class HomePage extends StatelessWidget {
             subtitle: Text(strings.myCollectionsDescription),
             leading: const Icon(Icons.collections_bookmark_rounded),
             trailing: const Icon(Icons.arrow_forward_ios_rounded),
+            onTap: () => _onTapMyCollection(context),
           ),
           const Divider(),
           ListTile(
@@ -39,6 +40,7 @@ class HomePage extends StatelessWidget {
             subtitle: Text(strings.collectionsDescription),
             leading: const Icon(Icons.list),
             trailing: const Icon(Icons.arrow_forward_ios_rounded),
+            onTap: () => _onTapCollections(context),
           ),
           const Divider(),
           ListTile(
