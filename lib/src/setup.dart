@@ -14,6 +14,7 @@ import 'data/provider/photo/photo_provider_impl.dart';
 import 'data/provider/template/template_provider_impl.dart';
 import 'domain/domain.dart';
 import 'presentation/create_collection/cubit/create_collection_cubit.dart';
+import 'presentation/user_collections/cubit/get_user_collections/get_user_collections_cubit.dart';
 import 'shared/widgets/collection_form/cubit/get_templates/get_templates_cubit.dart';
 import 'shared/widgets/collection_form/cubit/public_collection/public_collection_cubit.dart';
 import 'shared/widgets/collection_form/cubit/selected_template/selected_template_cubit.dart';
@@ -119,6 +120,11 @@ void _setupCubits() {
   );
   getIt.registerFactory<CreateCollectionCubit>(
     () => CreateCollectionCubit(
+      useCase: getIt.get(),
+    ),
+  );
+  getIt.registerFactory(
+    () => GetUserCollectionsCubit(
       useCase: getIt.get(),
     ),
   );
