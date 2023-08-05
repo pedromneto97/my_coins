@@ -23,5 +23,8 @@ class AppRouter extends _$AppRouter {
         AutoRoute(
           page: ProfileRoute.page,
         ),
+        AutoRoute(
+          page: CreateCollectionRoute.page,
+        ),
       ];
 }
