@@ -70,5 +70,9 @@
   "failedToCreateCollection": "Ocorreu um erro ao criar a coleção, tente novamente.",
   "@failedToCreateCollection": {
     "description": "Failed to create collection"
+  },
+  "collectionDetails": "Detalhes da coleção",
+  "@collectionDetails": {
+    "description": "Collection details"
   }
 }
