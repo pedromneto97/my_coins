@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:flutter/foundation.dart';
 
 import '../presentation/presentation.dart';
 
@@ -28,6 +29,9 @@ class AppRouter extends _$AppRouter {
         ),
         AutoRoute(
           page: UserCollectionsRoute.page,
+        ),
+        AutoRoute(
+          page: CollectionDetailsRoute.page,
         ),
       ];
 }

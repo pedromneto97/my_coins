@@ -15,6 +15,18 @@ abstract class _$AppRouter extends RootStackRouter {
 
   @override
   final Map<String, PageFactory> pagesMap = {
+    CollectionDetailsRoute.name: (routeData) {
+      final pathParams = routeData.inheritedPathParams;
+      final args = routeData.argsAs<CollectionDetailsRouteArgs>(
+          orElse: () => CollectionDetailsRouteArgs(id: pathParams.getString('id')));
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: CollectionDetailsPage(
+          key: args.key,
+          id: args.id,
+        ),
+      );
+    },
     CreateCollectionRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
@@ -52,6 +64,44 @@ abstract class _$AppRouter extends RootStackRouter {
       );
     },
   };
+}
+
+/// generated route for
+/// [CollectionDetailsPage]
+class CollectionDetailsRoute extends PageRouteInfo<CollectionDetailsRouteArgs> {
+  CollectionDetailsRoute({
+    Key? key,
+    required String id,
+    List<PageRouteInfo>? children,
+  }) : super(
+          CollectionDetailsRoute.name,
+          args: CollectionDetailsRouteArgs(
+            key: key,
+            id: id,
+          ),
+          rawPathParams: {'id': id},
+          initialChildren: children,
+        );
+
+  static const String name = 'CollectionDetailsRoute';
+
+  static const PageInfo<CollectionDetailsRouteArgs> page = PageInfo<CollectionDetailsRouteArgs>(name);
+}
+
+class CollectionDetailsRouteArgs {
+  const CollectionDetailsRouteArgs({
+    this.key,
+    required this.id,
+  });
+
+  final Key? key;
+
+  final String id;
+
+  @override
+  String toString() {
+    return 'CollectionDetailsRouteArgs{key: $key, id: $id}';
+  }
 }
 
 /// generated route for
