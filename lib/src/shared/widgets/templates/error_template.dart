@@ -3,19 +3,17 @@ import 'package:flutter/material.dart';
 import '../../../utils/localizations.dart';
 
 class ErrorTemplate extends StatelessWidget {
-  final String title;
-  final String message;
   final VoidCallback onRetry;
 
   const ErrorTemplate({
     super.key,
-    required this.title,
-    required this.message,
     required this.onRetry,
   });
 
   @override
   Widget build(BuildContext context) {
+    final strings = context.strings;
+
     return Padding(
       padding: const EdgeInsets.all(16.0),
       child: Column(
@@ -27,13 +25,13 @@ class ErrorTemplate extends StatelessWidget {
           ),
           const SizedBox(height: 32),
           Text(
-            title,
+            strings.failedToLoadPage,
             style: Theme.of(context).textTheme.headlineMedium,
             textAlign: TextAlign.center,
           ),
           const SizedBox(height: 16),
           Text(
-            message,
+            strings.checkYouConnectionAndTryAgain,
             style: Theme.of(context).textTheme.bodyLarge,
             textAlign: TextAlign.center,
           ),

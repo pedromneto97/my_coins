@@ -36,8 +36,6 @@ class UserCollectionsPage extends StatelessWidget {
               );
             } else if (state is GetUserCollectionsError) {
               child = ErrorTemplate(
-                title: strings.failedToLoadPage,
-                message: strings.checkYouConnectionAndTryAgain,
                 onRetry: context.read<GetUserCollectionsCubit>().getUserCollections,
               );
             } else {
