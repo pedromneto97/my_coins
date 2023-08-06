@@ -1,3 +1,5 @@
+import 'package:collection/collection.dart';
+
 import '../data/data.dart';
 import '../entities/entities.dart';
 
@@ -70,14 +72,14 @@ class FindCollectionUseCase {
   ) {
     final collectionCoinsWithTemplate = <CollectionCoinWithTemplate>[];
     for (final coin in coins) {
-      final collectionCoin = collectionCoins.firstWhere((element) => element.coinId == coin.id);
+      final collectionCoin = collectionCoins.firstWhereOrNull((element) => element.coinId == coin.id);
 
       collectionCoinsWithTemplate.add(
         CollectionCoinWithTemplate(
           id: coin.id,
           name: coin.name,
           isRare: coin.isRare,
-          photos: collectionCoin.photos,
+          photos: collectionCoin?.photos ?? [],
         ),
       );
     }
