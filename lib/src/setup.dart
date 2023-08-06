@@ -13,6 +13,7 @@ import 'data/provider/collection/collection_provider_impl.dart';
 import 'data/provider/photo/photo_provider_impl.dart';
 import 'data/provider/template/template_provider_impl.dart';
 import 'domain/domain.dart';
+import 'presentation/collection_details/cubit/find_collection_details_cubit.dart';
 import 'presentation/create_collection/cubit/create_collection_cubit.dart';
 import 'presentation/user_collections/cubit/get_user_collections/get_user_collections_cubit.dart';
 import 'shared/widgets/collection_form/cubit/get_templates/get_templates_cubit.dart';
@@ -125,6 +126,12 @@ void _setupCubits() {
   );
   getIt.registerFactory(
     () => GetUserCollectionsCubit(
+      useCase: getIt.get(),
+    ),
+  );
+  getIt.registerFactoryParam<FindCollectionDetailsCubit, String, void>(
+    (id, _) => FindCollectionDetailsCubit(
+      id: id,
       useCase: getIt.get(),
     ),
   );
