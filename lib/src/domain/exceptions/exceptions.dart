@@ -57,3 +57,15 @@ class FailedToDeletePhotoException implements MyCoinsException {
 class FailedToStorePhotoException implements MyCoinsException {
   const FailedToStorePhotoException();
 }
+
+class FailedToGetPhotosException implements MyCoinsException {
+  const FailedToGetPhotosException();
+}
+
+class FailedToTakePhotoException implements MyCoinsException {
+  const FailedToTakePhotoException();
+}
+
+class UserCancelledPhotoException implements MyCoinsException {
+  const UserCancelledPhotoException();
+}
