@@ -6,9 +6,11 @@ import 'package:firebase_ui_auth/firebase_ui_auth.dart';
 import 'package:firebase_ui_oauth_google/firebase_ui_oauth_google.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get_it/get_it.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:uuid/uuid.dart';
 
 import '../firebase_options.dart';
+import 'data/driver/photo_driver_impl.dart';
 import 'data/provider/collection/collection_provider_impl.dart';
 import 'data/provider/photo/photo_provider_impl.dart';
 import 'data/provider/template/template_provider_impl.dart';
@@ -25,6 +27,7 @@ Future<void> setup() async {
 
   await _setupFirebase();
   _setupProviders();
+  _setupDrivers();
   _setupUseCases();
   _setupCubits();
 }
@@ -60,6 +63,10 @@ void _setupProviders() {
       uuid: const Uuid(),
     ),
   );
+}
+
+void _setupDrivers() {
+  GetIt.I.registerFactory<PhotoDriver>(() => PhotoDriverImpl(picker: ImagePicker()));
 }
 
 void _setupUseCases() {
