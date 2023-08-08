@@ -104,10 +104,20 @@ void _setupUseCases() {
       getIt(),
     ),
   );
-  getIt.registerLazySingleton(
+  getIt.registerFactory(
     () => RemoveCoinUseCase(
       collectionProvider: getIt(),
       photosProvider: getIt(),
+    ),
+  );
+  getIt.registerFactory(
+    () => TakePhotoUseCase(
+      driver: getIt(),
+    ),
+  );
+  getIt.registerFactory(
+    () => PickPhotosUseCase(
+      driver: getIt(),
     ),
   );
 }
