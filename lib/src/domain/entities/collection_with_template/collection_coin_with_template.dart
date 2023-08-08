@@ -5,12 +5,14 @@ class CollectionCoinWithTemplate extends Equatable {
   final String name;
   final bool isRare;
   final List<String> photos;
+  final bool inCollection;
 
   const CollectionCoinWithTemplate({
     required this.id,
     required this.name,
     required this.isRare,
     required this.photos,
+    required this.inCollection,
   });
 
   @override
@@ -19,5 +21,6 @@ class CollectionCoinWithTemplate extends Equatable {
         name,
         isRare,
         photos,
+        inCollection,
       ];
 }

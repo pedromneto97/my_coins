@@ -80,6 +80,7 @@ class FindCollectionUseCase {
           name: coin.name,
           isRare: coin.isRare,
           photos: collectionCoin?.photos ?? [],
+          inCollection: collectionCoin != null,
         ),
       );
     }
