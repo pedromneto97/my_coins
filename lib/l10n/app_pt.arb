@@ -74,5 +74,41 @@
   "collectionDetails": "Detalhes da coleção",
   "@collectionDetails": {
     "description": "Collection details"
+  },
+  "coin": "Moeda",
+  "@coin": {
+    "description": "Coin"
+  },
+  "isRare": "Essa moeda é rara",
+  "@isRare": {
+    "description": "Is rare"
+  },
+  "isNotRare": "Essa moeda não é rara",
+  "@isNotRare": {
+    "description": "Is not rare"
+  },
+  "addCoinToCollection": "Adicionar moeda à coleção",
+  "@addCoinToCollection": {
+    "description": "Add coin to collection"
+  },
+  "failedToAddCoinToCollection": "Ocorreu um erro ao adicionar a moeda à coleção, tente novamente.",
+  "@failedToAddCoinToCollection": {
+    "description": "Failed to add coin to collection"
+  },
+  "removeCoinFromCollection": "Remover moeda da coleção",
+  "@removeCoinFromCollection": {
+    "description": "Remove coin from collection"
+  },
+  "coinDetails": "Detalhes da moeda",
+  "@coinDetails": {
+    "description": "Coin details"
+  },
+  "family": "Família",
+  "@family": {
+    "description": "Family"
+  },
+  "group": "Grupo",
+  "@group": {
+    "description": "Group"
   }
 }
