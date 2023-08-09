@@ -20,6 +20,7 @@ class AddCoinUseCase {
     required String collectionId,
     required String coinId,
     required List<File> photos,
+    required Preservation preservation,
   }) async {
     try {
       final photosUrls = await Future.wait([
@@ -31,6 +32,7 @@ class AddCoinUseCase {
         coin: CollectionCoin(
           coinId: coinId,
           photos: photosUrls,
+          preservation: preservation,
         ),
       );
     } on MyCoinsException {

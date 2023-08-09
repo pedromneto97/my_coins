@@ -8,10 +8,12 @@ part 'collection_coin_model.g.dart';
 class CollectionCoinModel {
   final List<String> photos;
   final String coinId;
+  final Preservation preservation;
 
   const CollectionCoinModel({
     required this.photos,
     required this.coinId,
+    this.preservation = Preservation.unknown,
   });
 
   factory CollectionCoinModel.fromJson(Map<String, dynamic> json) => _$CollectionCoinModelFromJson(json);
@@ -26,5 +28,6 @@ class CollectionCoinModel {
   CollectionCoin toEntity() => CollectionCoin(
         photos: photos,
         coinId: coinId,
+        preservation: preservation,
       );
 }

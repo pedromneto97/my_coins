@@ -81,6 +81,7 @@ class FindCollectionUseCase {
           isRare: coin.isRare,
           photos: collectionCoin?.photos ?? [],
           inCollection: collectionCoin != null,
+          preservation: collectionCoin?.preservation ?? Preservation.unknown,
         ),
       );
     }
