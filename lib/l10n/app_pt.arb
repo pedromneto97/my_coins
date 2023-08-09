@@ -142,5 +142,17 @@
   "preservation": "Conservação",
   "@preservation": {
     "description": "Preservation"
+  },
+  "confirmRemoveCoin": "Tem certeza que deseja remover essa moeda da coleção?",
+  "@confirmRemoveCoin": {
+    "description": "Confirm remove coin"
+  },
+  "yes": "Sim",
+  "@yes": {
+    "description": "Yes"
+  },
+  "no": "Não",
+  "@no": {
+    "description": "No"
   }
 }
