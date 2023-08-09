@@ -1,7 +1,13 @@
+import 'dart:async';
+
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../domain/domain.dart';
+import '../../../shared/event_bus/event_bus.dart';
+import '../../../shared/event_bus/events/base_event.dart';
+import '../../../shared/event_bus/events/coin_added_event.dart';
+import '../../../shared/event_bus/events/coin_removed_event.dart';
 
 part 'find_collection_details_state.dart';
 
@@ -9,12 +15,27 @@ class FindCollectionDetailsCubit extends Cubit<FindCollectionDetailsState> {
   final String _id;
   final FindCollectionUseCase _useCase;
 
+  late StreamSubscription _subscription;
+
   FindCollectionDetailsCubit({
     required String id,
     required FindCollectionUseCase useCase,
   })  : _useCase = useCase,
         _id = id,
-        super(const FindCollectionDetailsInitial());
+        super(const FindCollectionDetailsInitial()) {
+    _subscription = EventBus.I.listen<BaseEvent>((event) {
+      if (event is CoinAddedEvent || event is CoinRemovedEvent) {
+        loadCollectionDetails();
+      }
+    });
+  }
+
+  @override
+  Future<void> close() {
+    _subscription.cancel();
+
+    return super.close();
+  }
 
   Future<void> loadCollectionDetails() async {
     emit(const FindCollectionDetailsLoading());
