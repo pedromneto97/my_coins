@@ -15,6 +15,19 @@ abstract class _$AppRouter extends RootStackRouter {
 
   @override
   final Map<String, PageFactory> pagesMap = {
+    CoinDetailsRoute.name: (routeData) {
+      final args = routeData.argsAs<CoinDetailsRouteArgs>();
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: CoinDetailsPage(
+          key: args.key,
+          item: args.item,
+          family: args.family,
+          group: args.group,
+          collectionId: args.collectionId,
+        ),
+      );
+    },
     CollectionDetailsRoute.name: (routeData) {
       final pathParams = routeData.inheritedPathParams;
       final args = routeData.argsAs<CollectionDetailsRouteArgs>(
@@ -64,6 +77,58 @@ abstract class _$AppRouter extends RootStackRouter {
       );
     },
   };
+}
+
+/// generated route for
+/// [CoinDetailsPage]
+class CoinDetailsRoute extends PageRouteInfo<CoinDetailsRouteArgs> {
+  CoinDetailsRoute({
+    Key? key,
+    required CollectionCoinWithTemplate item,
+    required String family,
+    required String group,
+    required String collectionId,
+    List<PageRouteInfo>? children,
+  }) : super(
+          CoinDetailsRoute.name,
+          args: CoinDetailsRouteArgs(
+            key: key,
+            item: item,
+            family: family,
+            group: group,
+            collectionId: collectionId,
+          ),
+          initialChildren: children,
+        );
+
+  static const String name = 'CoinDetailsRoute';
+
+  static const PageInfo<CoinDetailsRouteArgs> page = PageInfo<CoinDetailsRouteArgs>(name);
+}
+
+class CoinDetailsRouteArgs {
+  const CoinDetailsRouteArgs({
+    this.key,
+    required this.item,
+    required this.family,
+    required this.group,
+    required this.collectionId,
+  });
+
+  final Key? key;
+
+  final CollectionCoinWithTemplate item;
+
+  final String family;
+
+  final String group;
+
+  final String collectionId;
+
+  @override
+  String toString() {
+    return 'CoinDetailsRouteArgs{key: $key, item: $item, family: $family, group: $group, collectionId: $collectionId}';
+  }
 }
 
 /// generated route for

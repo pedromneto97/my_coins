@@ -1,4 +1,5 @@
 export 'auth/login_page.dart';
+export 'coin_details/coin_details_page.dart';
 export 'collection_details/collection_details_page.dart';
 export 'create_collection/create_collection_page.dart';
 export 'home/home_page.dart';

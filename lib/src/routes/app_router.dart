@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/foundation.dart';
 
+import '../domain/domain.dart';
 import '../presentation/presentation.dart';
 
 part 'app_router.gr.dart';
@@ -32,6 +33,9 @@ class AppRouter extends _$AppRouter {
         ),
         AutoRoute(
           page: CollectionDetailsRoute.page,
+        ),
+        AutoRoute(
+          page: CoinDetailsRoute.page,
         ),
       ];
 }
