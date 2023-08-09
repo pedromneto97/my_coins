@@ -49,7 +49,7 @@ class AddCoinToCollection extends StatelessWidget {
         BlocProvider(
           create: (context) => GetIt.I.get<SelectedPhotosCubit>(),
         ),
-        BlocProvider(
+        BlocProvider<AddCoinCubit>(
           create: (context) => GetIt.I.get<AddCoinCubit>(
             param1: collectionId,
             param2: coinId,
@@ -59,82 +59,91 @@ class AddCoinToCollection extends StatelessWidget {
           create: (context) => GetIt.I.get<SelectedPreservationCubit>(),
         ),
       ],
-      child: BlocListener<AddCoinCubit, AddCoinState>(
-        listener: _onAddCoinStateChange,
-        child: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Expanded(
-                    child: Text(
-                      strings.addCoinToCollection,
-                      style: Theme.of(context).textTheme.headlineSmall,
-                    ),
+      child: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Expanded(
+                  child: Text(
+                    strings.addCoinToCollection,
+                    style: Theme.of(context).textTheme.headlineSmall,
                   ),
-                  IconButton(
-                    onPressed: Navigator.of(context).pop,
-                    icon: const Icon(Icons.close),
+                ),
+                IconButton(
+                  onPressed: Navigator.of(context).pop,
+                  icon: const Icon(Icons.close),
+                ),
+              ],
+            ),
+            const SizedBox(height: 24),
+            BlocBuilder<SelectedPhotosCubit, List<File>>(
+              builder: (context, state) => state.isEmpty
+                  ? const Icon(
+                      Icons.image,
+                      size: imageSize,
+                    )
+                  : CarouselSlider.builder(
+                      itemBuilder: (context, index, realIndex) => Image.file(
+                        state[index],
+                        height: imageSize,
+                        width: imageSize,
+                      ),
+                      itemCount: state.length,
+                      options: CarouselOptions(
+                        viewportFraction: 0.4,
+                        enlargeCenterPage: true,
+                        height: imageSize,
+                        enlargeFactor: 0.4,
+                        enableInfiniteScroll: false,
+                      ),
+                    ),
+            ),
+            const SizedBox(height: 8),
+            Builder(
+              builder: (context) => Row(
+                children: [
+                  const Expanded(
+                    child: PreservationForm(),
+                  ),
+                  const SizedBox(width: 8),
+                  IconButton.outlined(
+                    onPressed: () => _addPhotoFromGallery(context),
+                    icon: const Icon(Icons.add_photo_alternate_outlined),
+                  ),
+                  const SizedBox(width: 8),
+                  IconButton.outlined(
+                    onPressed: () => _addPhotoFromCamera(context),
+                    icon: const Icon(Icons.add_a_photo_outlined),
                   ),
                 ],
               ),
-              const SizedBox(height: 24),
-              BlocBuilder<SelectedPhotosCubit, List<File>>(
-                builder: (context, state) => state.isEmpty
-                    ? const Icon(
-                        Icons.image,
-                        size: imageSize,
-                      )
-                    : CarouselSlider.builder(
-                        itemBuilder: (context, index, realIndex) => Image.file(
-                          state[index],
-                          height: imageSize,
-                          width: imageSize,
-                        ),
-                        itemCount: state.length,
-                        options: CarouselOptions(
-                          viewportFraction: 0.4,
-                          enlargeCenterPage: true,
-                          height: imageSize,
-                          enlargeFactor: 0.4,
-                          enableInfiniteScroll: false,
-                        ),
-                      ),
-              ),
-              const SizedBox(height: 8),
-              Builder(
-                builder: (context) => Row(
-                  children: [
-                    const Expanded(
-                      child: PreservationForm(),
-                    ),
-                    const SizedBox(width: 8),
-                    IconButton.outlined(
-                      onPressed: () => _addPhotoFromGallery(context),
-                      icon: const Icon(Icons.add_photo_alternate_outlined),
-                    ),
-                    const SizedBox(width: 8),
-                    IconButton.outlined(
-                      onPressed: () => _addPhotoFromCamera(context),
-                      icon: const Icon(Icons.add_a_photo_outlined),
-                    ),
-                  ],
-                ),
-              ),
-              const SizedBox(height: 16),
-              FilledButton.icon(
-                onPressed: () => _addCoinToCollection(context),
-                label: Text(
-                  context.strings.addCoinToCollection,
-                ),
-                icon: const Icon(Icons.add),
-              ),
-            ],
-          ),
+            ),
+            const SizedBox(height: 16),
+            BlocConsumer<AddCoinCubit, AddCoinState>(
+              listener: _onAddCoinStateChange,
+              builder: (context, state) {
+                if (state is AddCoinLoading) {
+                  return const FilledButton(
+                    onPressed: null,
+                    child: CircularProgressIndicator(),
+                  );
+                }
+
+                return FilledButton.icon(
+                  onPressed: () => _addCoinToCollection(context),
+                  label: Text(
+                    context.strings.addCoinToCollection,
+                  ),
+                  icon: const Icon(Icons.add),
+                );
+              },
+            ),
+          ],
         ),
       ),
     );
