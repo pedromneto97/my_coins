@@ -13,6 +13,7 @@ class LoginPage extends StatelessWidget {
     return SignInScreen(
       actions: [
         AuthStateChangeAction<SignedIn>((context, state) => context.replaceRoute(const HomeRoute())),
+        AuthStateChangeAction<UserCreated>((context, state) => context.replaceRoute(const HomeRoute())),
       ],
     );
   }
