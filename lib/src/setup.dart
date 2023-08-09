@@ -42,7 +42,6 @@ Future<void> _setupFirebase() async {
   );
 
   FirebaseUIAuth.configureProviders([
-    EmailAuthProvider(),
     GoogleProvider(clientId: '38384210019-1ggtoqnlbt7pjrpq9ed368mn5jt0bd3t.apps.googleusercontent.com'),
   ]);
 }
