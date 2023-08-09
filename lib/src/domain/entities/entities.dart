@@ -1,5 +1,6 @@
 export 'collection/collection.dart';
 export 'collection/collection_coin.dart';
+export 'collection/preservation.dart';
 export 'collection_with_template/collection_coin_family.dart';
 export 'collection_with_template/collection_coin_group.dart';
 export 'collection_with_template/collection_coin_with_template.dart';
