@@ -6,6 +6,7 @@ import '../../domain/domain.dart';
 import '../../utils/localizations.dart';
 import '../../utils/preservation_to_localized_text.dart';
 import 'widgets/add_coin_to_collection/add_coin_to_collection.dart';
+import 'widgets/remove_coin_from_collection/remove_coin_from_collection.dart';
 import 'widgets/value_with_label.dart';
 
 @RoutePage()
@@ -31,7 +32,17 @@ class CoinDetailsPage extends StatelessWidget {
         ),
       );
 
-  void _onTapRemove(BuildContext context) => Navigator.of(context).pop(false);
+  void _onTapRemove(BuildContext context) => showModalBottomSheet(
+        context: context,
+        builder: (context) => RemoveCoinFromCollection(
+          coin: CollectionCoin(
+            photos: item.photos,
+            coinId: item.id,
+            preservation: item.preservation,
+          ),
+          collectionId: collectionId,
+        ),
+      );
 
   @override
   Widget build(BuildContext context) {
