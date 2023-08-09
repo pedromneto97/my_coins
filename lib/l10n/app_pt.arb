@@ -110,5 +110,37 @@
   "group": "Grupo",
   "@group": {
     "description": "Group"
+  },
+  "uncirculated": "Flor de cunho",
+  "@uncirculated": {
+    "description": "Uncirculated"
+  },
+  "extremelyFine": "Soberba",
+  "@extremelyFine": {
+    "description": "Extremely fine"
+  },
+  "veryFine": "Muito bem conservada",
+  "@veryFine": {
+    "description": "Very fine"
+  },
+  "fine": "Bem conservada",
+  "@fine": {
+    "description": "Fine"
+  },
+  "good": "Regular",
+  "@good": {
+    "description": "Good"
+  },
+  "poor": "Um tanto gasta",
+  "@poor": {
+    "description": "Poor"
+  },
+  "unknown": "Desconhecido",
+  "@unknown": {
+    "description": "Unknown"
+  },
+  "preservation": "Conservação",
+  "@preservation": {
+    "description": "Preservation"
   }
 }
