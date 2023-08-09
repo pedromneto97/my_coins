@@ -15,6 +15,9 @@ import 'data/provider/collection/collection_provider_impl.dart';
 import 'data/provider/photo/photo_provider_impl.dart';
 import 'data/provider/template/template_provider_impl.dart';
 import 'domain/domain.dart';
+import 'presentation/coin_details/widgets/add_coin_to_collection/cubit/add_coin/add_coin_cubit.dart';
+import 'presentation/coin_details/widgets/add_coin_to_collection/cubit/selected_photos/selected_photos_cubit.dart';
+import 'presentation/coin_details/widgets/add_coin_to_collection/cubit/selected_preservation/selected_preservation_cubit.dart';
 import 'presentation/collection_details/cubit/find_collection_details_cubit.dart';
 import 'presentation/create_collection/cubit/create_collection_cubit.dart';
 import 'presentation/user_collections/cubit/get_user_collections/get_user_collections_cubit.dart';
@@ -152,4 +155,18 @@ void _setupCubits() {
       useCase: getIt.get(),
     ),
   );
+  getIt.registerFactory(
+    () => SelectedPhotosCubit(
+      takePhotoUseCase: getIt.get(),
+      pickPhotosUseCase: getIt.get(),
+    ),
+  );
+  getIt.registerFactoryParam<AddCoinCubit, String, String>(
+    (collectionId, coinId) => AddCoinCubit(
+      useCase: getIt.get(),
+      collectionId: collectionId,
+      coinId: coinId,
+    ),
+  );
+  getIt.registerFactory<SelectedPreservationCubit>(SelectedPreservationCubit.new);
 }
