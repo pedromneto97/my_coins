@@ -50,7 +50,13 @@ class DetailsLoaded extends StatelessWidget {
                 itemBuilder: (context, index) {
                   final item = group.coins[index];
 
-                  return CollectionItem(item: item);
+                  return CollectionItem(
+                    key: ValueKey(item.id),
+                    item: item,
+                    group: group.name,
+                    family: family.name,
+                    collectionId: collection.id,
+                  );
                 },
               ),
             ),
