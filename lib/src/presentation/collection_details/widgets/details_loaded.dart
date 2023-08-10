@@ -13,11 +13,17 @@ class DetailsLoaded extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final textTheme = Theme.of(context).textTheme;
+
     return CustomScrollView(
       slivers: [
-        SliverToBoxAdapter(
-          child: Text(
-            collection.name,
+        SliverPadding(
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+          sliver: SliverToBoxAdapter(
+            child: Text(
+              collection.name,
+              style: textTheme.titleLarge,
+            ),
           ),
         ),
         for (final family in collection.coinFamily) ...[
@@ -26,6 +32,7 @@ class DetailsLoaded extends StatelessWidget {
             sliver: SliverToBoxAdapter(
               child: Text(
                 family.name,
+                style: textTheme.titleLarge,
               ),
             ),
           ),
@@ -35,6 +42,7 @@ class DetailsLoaded extends StatelessWidget {
               sliver: SliverToBoxAdapter(
                 child: Text(
                   group.name,
+                  style: textTheme.titleMedium,
                 ),
               ),
             ),
