@@ -14,6 +14,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "38384210019-ergt5qqptr7kpbhp93tqn2o4hvil7lj3.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "br.eng.pedro_mendes.my_coins",
+            "certificate_hash": "8383da002cb41cf9972fd3b53befd9d7c5cd14f1"
+          }
+        },
+        {
           "client_id": "38384210019-lqj9t5urabqr0o60211744tjgfs01lh9.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
