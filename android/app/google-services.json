@@ -22,6 +22,14 @@
           }
         },
         {
+          "client_id": "38384210019-ik4b835u9jf7stlj19c2q9141ev2jmgr.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "br.eng.pedro_mendes.my_coins",
+            "certificate_hash": "48e748a65211c21bddc8cf50d8d9d1a0c03bd65d"
+          }
+        },
+        {
           "client_id": "38384210019-lqj9t5urabqr0o60211744tjgfs01lh9.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
