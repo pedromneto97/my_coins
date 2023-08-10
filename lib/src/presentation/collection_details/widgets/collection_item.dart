@@ -29,7 +29,7 @@ class CollectionItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const imageSize = 48.0;
+    const imageSize = 56.0;
 
     return Card(
       shape: const RoundedRectangleBorder(
@@ -37,25 +37,32 @@ class CollectionItem extends StatelessWidget {
       ),
       child: InkWell(
         onTap: () => onTapItem(context),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            item.photos.isNotEmpty
-                ? Image.network(
-                    item.photos.first,
-                    width: imageSize,
-                    height: imageSize,
-                  )
-                : const Icon(
-                    Icons.monetization_on_outlined,
-                    size: imageSize,
-                  ),
-            const SizedBox(height: 8),
-            Text(
-              item.name,
-            ),
-          ],
+        borderRadius: const BorderRadius.all(Radius.circular(12)),
+        child: Padding(
+          padding: const EdgeInsets.all(4.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              item.photos.isNotEmpty
+                  ? Image.network(
+                      item.photos.first,
+                      width: imageSize,
+                      height: imageSize,
+                    )
+                  : const Icon(
+                      Icons.monetization_on_outlined,
+                      size: imageSize,
+                    ),
+              const SizedBox(height: 8),
+              Text(
+                item.name,
+                maxLines: 1,
+                style: Theme.of(context).textTheme.bodyMedium,
+                overflow: TextOverflow.ellipsis,
+              ),
+            ],
+          ),
         ),
       ),
     );
