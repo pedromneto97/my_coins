@@ -17,12 +17,26 @@ class LoginPage extends StatelessWidget {
     if (context.mounted) context.router.replace(const HomeRoute());
   }
 
+  Future<void> _onAuthFailed(BuildContext context, AuthFailed state) async {
+    StackTrace? stackTrace;
+    if (state.exception is FirebaseAuthException) {
+      stackTrace = (state.exception as FirebaseAuthException).stackTrace;
+    }
+
+    await GetIt.I.get<CrashlyticsProvider>().recordError(
+          state.exception,
+          stackTrace,
+          reason: '[LoginPage] Failed to authenticate',
+        );
+  }
+
   @override
   Widget build(BuildContext context) {
     return SignInScreen(
       actions: [
         AuthStateChangeAction<SignedIn>(_onAuthSuccess),
         AuthStateChangeAction<UserCreated>(_onAuthSuccess),
+        AuthStateChangeAction<AuthFailed>(_onAuthFailed),
       ],
     );
   }
