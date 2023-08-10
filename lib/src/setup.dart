@@ -1,9 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart' hide EmailAuthProvider;
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:firebase_ui_auth/firebase_ui_auth.dart';
 import 'package:firebase_ui_oauth_google/firebase_ui_oauth_google.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get_it/get_it.dart';
 import 'package:image_picker/image_picker.dart';
@@ -12,6 +14,7 @@ import 'package:uuid/uuid.dart';
 import '../firebase_options.dart';
 import 'data/driver/photo_driver_impl.dart';
 import 'data/provider/collection/collection_provider_impl.dart';
+import 'data/provider/crashlytics/crashlytics_provider_impl.dart';
 import 'data/provider/photo/photo_provider_impl.dart';
 import 'data/provider/template/template_provider_impl.dart';
 import 'domain/domain.dart';
@@ -41,6 +44,13 @@ Future<void> _setupFirebase() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
 
+  FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterError;
+  PlatformDispatcher.instance.onError = (exception, stackTrace) {
+    FirebaseCrashlytics.instance.recordError(exception, stackTrace, fatal: true);
+
+    return true;
+  };
+
   FirebaseUIAuth.configureProviders([
     GoogleProvider(clientId: '38384210019-1ggtoqnlbt7pjrpq9ed368mn5jt0bd3t.apps.googleusercontent.com'),
   ]);
@@ -48,6 +58,10 @@ Future<void> _setupFirebase() async {
 
 void _setupProviders() {
   final getIt = GetIt.I;
+
+  getIt.registerLazySingleton<CrashlyticsProvider>(
+    () => CrashlyticsProviderImpl(crashlytics: FirebaseCrashlytics.instance),
+  );
 
   getIt.registerLazySingleton<TemplateProvider>(
     () => TemplateProviderImpl(
