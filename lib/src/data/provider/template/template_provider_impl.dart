@@ -2,7 +2,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 import '../../../domain/domain.dart';
 import 'models/collection_template_model.dart';
-import 'template_seed.dart';
 
 class TemplateProviderImpl implements TemplateProvider {
   late final CollectionReference<CollectionTemplateModel> _templateReference;
@@ -16,19 +15,6 @@ class TemplateProviderImpl implements TemplateProvider {
           fromFirestore: CollectionTemplateModel.fromJson,
           toFirestore: (value, options) => value.toJson(),
         );
-
-    _initializeTemplate();
-  }
-
-  Future<void> _initializeTemplate() async {
-    try {
-      final snapshot = await _templateReference.get();
-      if (snapshot.docs.isEmpty) {
-        await _templateReference.add(CollectionTemplateModel.fromEntity(template));
-      }
-    } catch (e) {
-      print(e);
-    }
   }
 
   @override
