@@ -19,7 +19,7 @@
   "@collections": {
     "description": "Collections"
   },
-  "collectionsDescription": "Aqui você pode as coleções de outras pessoas.",
+  "collectionsDescription": "Aqui você pode ver as coleções de outras pessoas.",
   "@collectionsDescription": {
     "description": "Collections description"
   },
