@@ -12,12 +12,12 @@ class CrashlyticsProviderImpl implements CrashlyticsProvider {
   @override
   Future<void> recordError(
     Object exception,
-    StackTrace stack, {
+    StackTrace? stackTrace, {
     String reason = '',
   }) =>
       _crashlytics.recordError(
         exception,
-        stack,
+        stackTrace,
         reason: reason,
       );
 

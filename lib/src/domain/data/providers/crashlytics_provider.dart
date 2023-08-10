@@ -5,7 +5,7 @@ abstract interface class CrashlyticsProvider {
 
   Future<void> recordError(
     Object exception,
-    StackTrace stack, {
+    StackTrace? stackTrace, {
     String reason = '',
   });
 }
