@@ -1,4 +1,3 @@
-import 'dart:developer';
 import 'dart:io';
 
 import 'package:firebase_storage/firebase_storage.dart';
@@ -9,12 +8,15 @@ import '../../../domain/domain.dart';
 class PhotoProviderImpl implements PhotoProvider {
   final FirebaseStorage _storage;
   final Uuid _uuid;
+  final CrashlyticsProvider _crashlytics;
 
   const PhotoProviderImpl({
     required FirebaseStorage storage,
     required Uuid uuid,
+    required CrashlyticsProvider crashlytics,
   })  : _uuid = uuid,
-        _storage = storage;
+        _storage = storage,
+        _crashlytics = crashlytics;
 
   @override
   Future<void> deletePhoto(String url) async {
@@ -23,11 +25,10 @@ class PhotoProviderImpl implements PhotoProvider {
 
       await ref.delete();
     } catch (exception, stackTrace) {
-      log(
-        exception.toString(),
-        stackTrace: stackTrace,
-        time: DateTime.now(),
-        name: '[PhotoProviderImpl] deletePhoto',
+      _crashlytics.recordError(
+        exception,
+        stackTrace,
+        reason: '[PhotoProviderImpl] Failed to delete photo',
       );
 
       throw const FailedToDeletePhotoException();
@@ -44,11 +45,10 @@ class PhotoProviderImpl implements PhotoProvider {
 
       return await snapshot.ref.getDownloadURL();
     } catch (exception, stackTrace) {
-      log(
-        exception.toString(),
-        stackTrace: stackTrace,
-        time: DateTime.now(),
-        name: '[PhotoProviderImpl] storePhoto',
+      _crashlytics.recordError(
+        exception,
+        stackTrace,
+        reason: '[PhotoProviderImpl] Failed to store photo',
       );
 
       throw const FailedToStorePhotoException();

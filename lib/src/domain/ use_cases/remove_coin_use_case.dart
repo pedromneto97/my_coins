@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import '../data/data.dart';
 import '../entities/collection/collection_coin.dart';
 import '../exceptions/exceptions.dart';
@@ -7,12 +5,15 @@ import '../exceptions/exceptions.dart';
 class RemoveCoinUseCase {
   final CollectionProvider _collectionProvider;
   final PhotoProvider _photosProvider;
+  final CrashlyticsProvider _crashlyticsProvider;
 
   const RemoveCoinUseCase({
     required CollectionProvider collectionProvider,
     required PhotoProvider photosProvider,
+    required CrashlyticsProvider crashlyticsProvider,
   })  : _collectionProvider = collectionProvider,
-        _photosProvider = photosProvider;
+        _photosProvider = photosProvider,
+        _crashlyticsProvider = crashlyticsProvider;
 
   Future<void> call({
     required String collectionId,
@@ -30,12 +31,10 @@ class RemoveCoinUseCase {
     } on MyCoinsException {
       rethrow;
     } catch (exception, stackTrace) {
-      log(
-        exception.toString(),
-        error: exception,
-        stackTrace: stackTrace,
-        time: DateTime.now(),
-        name: 'RemoveCoinUseCase',
+      _crashlyticsProvider.recordError(
+        exception,
+        stackTrace,
+        reason: '[RemoveCoinUseCase] Failed to remove coin',
       );
 
       throw const FailedToRemoveCoinException();

@@ -1,20 +1,21 @@
-import 'dart:developer';
 import 'dart:io';
 
-import '../data/providers/collection_provider.dart';
-import '../data/providers/photo_provider.dart';
+import '../data/data.dart';
 import '../entities/entities.dart';
 import '../exceptions/exceptions.dart';
 
 class AddCoinUseCase {
   final CollectionProvider _collectionProvider;
   final PhotoProvider _photosProvider;
+  final CrashlyticsProvider _crashlyticsProvider;
 
   const AddCoinUseCase({
     required CollectionProvider collectionProvider,
     required PhotoProvider photosProvider,
+    required CrashlyticsProvider crashlyticsProvider,
   })  : _collectionProvider = collectionProvider,
-        _photosProvider = photosProvider;
+        _photosProvider = photosProvider,
+        _crashlyticsProvider = crashlyticsProvider;
 
   Future<CollectionCoin> call({
     required String collectionId,
@@ -38,12 +39,10 @@ class AddCoinUseCase {
     } on MyCoinsException {
       rethrow;
     } catch (exception, stackTrace) {
-      log(
-        exception.toString(),
-        error: exception,
-        stackTrace: stackTrace,
-        time: DateTime.now(),
-        name: 'AddCoinUseCase',
+      _crashlyticsProvider.recordError(
+        exception,
+        stackTrace,
+        reason: '[AddCoinUseCase] Failed to add coin',
       );
 
       throw const FailedToAddCoinException();

@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
@@ -10,11 +8,14 @@ import 'models/collection_model.dart';
 class CollectionProviderImpl implements CollectionProvider {
   late final CollectionReference<CollectionModel> _collectionReference;
   final FirebaseAuth _firebaseAuth;
+  final CrashlyticsProvider _crashlytics;
 
   CollectionProviderImpl({
     required FirebaseFirestore firestore,
     required FirebaseAuth firebaseAuth,
-  }) : _firebaseAuth = firebaseAuth {
+    required CrashlyticsProvider crashlytics,
+  })  : _firebaseAuth = firebaseAuth,
+        _crashlytics = crashlytics {
     _collectionReference = firestore.collection('collections').withConverter(
           fromFirestore: CollectionModel.fromFirebase,
           toFirestore: (value, options) => value.toJson(),
@@ -34,11 +35,10 @@ class CollectionProviderImpl implements CollectionProvider {
 
       return coin;
     } catch (exception, stackTrace) {
-      log(
-        exception.toString(),
-        name: '[CollectionProviderImpl] Failed to add coin to collection',
-        stackTrace: stackTrace,
-        time: DateTime.now(),
+      _crashlytics.recordError(
+        exception,
+        stackTrace,
+        reason: '[CollectionProviderImpl] Failed to add coin to collection',
       );
 
       throw const FailedToAddCoinToCollectionException();
@@ -58,11 +58,10 @@ class CollectionProviderImpl implements CollectionProvider {
 
       return data.data()!.toEntity(_currentUserId);
     } catch (exception, stackTrace) {
-      log(
-        exception.toString(),
-        name: '[CollectionProviderImpl] Failed to create collection',
-        stackTrace: stackTrace,
-        time: DateTime.now(),
+      _crashlytics.recordError(
+        exception,
+        stackTrace,
+        reason: '[CollectionProviderImpl] Failed to create collection',
       );
 
       throw const FailedToCreateCollectionException();
@@ -74,11 +73,10 @@ class CollectionProviderImpl implements CollectionProvider {
     try {
       await _collectionReference.doc(id).delete();
     } catch (exception, stackTrace) {
-      log(
-        exception.toString(),
-        name: '[CollectionProviderImpl] Failed to delete collection',
-        stackTrace: stackTrace,
-        time: DateTime.now(),
+      _crashlytics.recordError(
+        exception,
+        stackTrace,
+        reason: '[CollectionProviderImpl] Failed to delete collection',
       );
 
       throw const FailedToDeleteCollectionException();
@@ -94,11 +92,10 @@ class CollectionProviderImpl implements CollectionProvider {
     } on MyCoinsException {
       rethrow;
     } catch (exception, stackTrace) {
-      log(
-        exception.toString(),
-        name: '[CollectionProviderImpl] Failed to find collection with id: $id',
-        stackTrace: stackTrace,
-        time: DateTime.now(),
+      _crashlytics.recordError(
+        exception,
+        stackTrace,
+        reason: '[CollectionProviderImpl] Failed to find collection with id: $id',
       );
 
       throw const CollectionNotFoundException();
@@ -123,11 +120,10 @@ class CollectionProviderImpl implements CollectionProvider {
 
       return collections;
     } catch (exception, stackTrace) {
-      log(
-        exception.toString(),
-        name: '[CollectionProviderImpl] Failed to get public collections',
-        stackTrace: stackTrace,
-        time: DateTime.now(),
+      _crashlytics.recordError(
+        exception,
+        stackTrace,
+        reason: '[CollectionProviderImpl] Failed to get public collections',
       );
 
       throw const FailedToGetPublicCollectionsException();
@@ -152,11 +148,10 @@ class CollectionProviderImpl implements CollectionProvider {
 
       return collections;
     } catch (exception, stackTrace) {
-      log(
-        exception.toString(),
-        name: '[CollectionProviderImpl] Failed to get user collections',
-        stackTrace: stackTrace,
-        time: DateTime.now(),
+      _crashlytics.recordError(
+        exception,
+        stackTrace,
+        reason: '[CollectionProviderImpl] Failed to get user collections',
       );
 
       throw const FailedToGetUserCollectionsException();
@@ -184,11 +179,10 @@ class CollectionProviderImpl implements CollectionProvider {
     } on MyCoinsException {
       rethrow;
     } catch (exception, stackTrace) {
-      log(
-        exception.toString(),
-        name: '[CollectionProviderImpl] Failed to remove coin from collection',
-        stackTrace: stackTrace,
-        time: DateTime.now(),
+      _crashlytics.recordError(
+        exception,
+        stackTrace,
+        reason: '[CollectionProviderImpl] Failed to remove coin from collection',
       );
 
       throw const FailedToRemoveCoinFromCollectionException();
@@ -208,11 +202,10 @@ class CollectionProviderImpl implements CollectionProvider {
 
       return snapshot.data()!.toEntity(_currentUserId);
     } catch (exception, stackTrace) {
-      log(
-        exception.toString(),
-        name: '[CollectionProviderImpl] Failed to update collection',
-        stackTrace: stackTrace,
-        time: DateTime.now(),
+      _crashlytics.recordError(
+        exception,
+        stackTrace,
+        reason: '[CollectionProviderImpl] Failed to update collection',
       );
 
       throw const FailedToUpdateCollectionException();

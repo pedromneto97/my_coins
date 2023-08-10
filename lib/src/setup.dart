@@ -60,24 +60,29 @@ void _setupProviders() {
   final getIt = GetIt.I;
 
   getIt.registerLazySingleton<CrashlyticsProvider>(
-    () => CrashlyticsProviderImpl(crashlytics: FirebaseCrashlytics.instance),
+    () => CrashlyticsProviderImpl(
+      crashlytics: FirebaseCrashlytics.instance,
+    ),
   );
 
   getIt.registerLazySingleton<TemplateProvider>(
     () => TemplateProviderImpl(
       firestore: FirebaseFirestore.instance,
+      crashlytics: getIt.get(),
     ),
   );
   getIt.registerLazySingleton<CollectionProvider>(
     () => CollectionProviderImpl(
       firestore: FirebaseFirestore.instance,
       firebaseAuth: FirebaseAuth.instance,
+      crashlytics: getIt.get(),
     ),
   );
   getIt.registerLazySingleton<PhotoProvider>(
     () => PhotoProviderImpl(
       storage: FirebaseStorage.instance,
       uuid: const Uuid(),
+      crashlytics: getIt.get(),
     ),
   );
 }
@@ -91,50 +96,52 @@ void _setupUseCases() {
 
   getIt.registerFactory(
     () => AddCoinUseCase(
-      collectionProvider: getIt(),
-      photosProvider: getIt(),
+      collectionProvider: getIt.get(),
+      photosProvider: getIt.get(),
+      crashlyticsProvider: getIt.get(),
     ),
   );
   getIt.registerFactory(
     () => CreateCollectionUseCase(
-      getIt(),
+      getIt.get(),
     ),
   );
   getIt.registerFactory(
     () => FindCollectionUseCase(
-      collectionProvider: getIt(),
-      templateProvider: getIt(),
+      collectionProvider: getIt.get(),
+      templateProvider: getIt.get(),
     ),
   );
   getIt.registerFactory(
     () => GetPublicCollectionsUseCase(
-      getIt(),
+      getIt.get(),
     ),
   );
   getIt.registerFactory(
     () => GetTemplatesUseCase(
-      templateProvider: getIt(),
+      templateProvider: getIt.get(),
     ),
   );
   getIt.registerFactory(
     () => GetUserCollectionsUseCase(
-      getIt(),
+      getIt.get(),
     ),
   );
   getIt.registerFactory(
     () => RemoveCoinUseCase(
-      collectionProvider: getIt(),
-      photosProvider: getIt(),
+      collectionProvider: getIt.get(),
+      photosProvider: getIt.get(),
+      crashlyticsProvider: getIt.get(),
     ),
   );
   getIt.registerFactory(
     () => TakePhotoUseCase(
-      driver: getIt(),
+      driver: getIt.get(),
     ),
   );
   getIt.registerFactory(
     () => PickPhotosUseCase(
-      driver: getIt(),
+      driver: getIt.get(),
     ),
   );
 }
@@ -144,7 +151,7 @@ void _setupCubits() {
 
   getIt.registerFactory(
     () => GetTemplatesCubit(
-      getIt(),
+      getIt.get(),
     ),
   );
   getIt.registerFactoryParam<SelectedTemplateCubit, CollectionTemplate?, void>(

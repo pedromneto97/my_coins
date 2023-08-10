@@ -1,20 +1,34 @@
-import 'dart:developer';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 import '../../../domain/domain.dart';
 import 'models/collection_template_model.dart';
+import 'template_seed.dart';
 
 class TemplateProviderImpl implements TemplateProvider {
   late final CollectionReference<CollectionTemplateModel> _templateReference;
+  final CrashlyticsProvider _crashlytics;
 
   TemplateProviderImpl({
     required FirebaseFirestore firestore,
-  }) {
+    required CrashlyticsProvider crashlytics,
+  }) : _crashlytics = crashlytics {
     _templateReference = firestore.collection('templates').withConverter(
           fromFirestore: CollectionTemplateModel.fromJson,
           toFirestore: (value, options) => value.toJson(),
         );
+
+    _initializeTemplate();
+  }
+
+  Future<void> _initializeTemplate() async {
+    try {
+      final snapshot = await _templateReference.get();
+      if (snapshot.docs.isEmpty) {
+        await _templateReference.add(CollectionTemplateModel.fromEntity(template));
+      }
+    } catch (e) {
+      print(e);
+    }
   }
 
   @override
@@ -29,11 +43,10 @@ class TemplateProviderImpl implements TemplateProvider {
     } on MyCoinsException {
       rethrow;
     } catch (exception, stackTrace) {
-      log(
-        exception.toString(),
-        name: '[TemplateProviderImpl] Failed to find template with id: $id',
-        stackTrace: stackTrace,
-        time: DateTime.now(),
+      _crashlytics.recordError(
+        exception,
+        stackTrace,
+        reason: '[TemplateProviderImpl] Failed to find template',
       );
 
       throw const TemplateNotFoundException();
@@ -53,11 +66,10 @@ class TemplateProviderImpl implements TemplateProvider {
 
       return templates;
     } catch (exception, stackTrace) {
-      log(
-        exception.toString(),
-        name: '[TemplateProviderImpl] Failed to get collection templates',
-        stackTrace: stackTrace,
-        time: DateTime.now(),
+      _crashlytics.recordError(
+        exception,
+        stackTrace,
+        reason: '[TemplateProviderImpl] Failed to get templates',
       );
 
       throw const FailedToGetTemplatesException();
