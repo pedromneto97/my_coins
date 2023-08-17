@@ -1,8 +1,8 @@
 import 'package:auto_route/annotations.dart';
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 
 import '../../domain/domain.dart';
+import '../../shared/widgets/carousel/custom_carousel.dart';
 import '../../utils/localizations.dart';
 import '../../utils/preservation_to_localized_text.dart';
 import 'widgets/add_coin_to_collection/add_coin_to_collection.dart';
@@ -62,24 +62,9 @@ class CoinDetailsPage extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             item.photos.isNotEmpty
-                ? CarouselSlider.builder(
-                    itemCount: item.photos.length,
-                    itemBuilder: (context, index, realIndex) {
-                      final photo = item.photos[index];
-
-                      return Image.network(
-                        photo,
-                        key: ValueKey(photo),
-                        width: imageSize,
-                        height: imageSize,
-                      );
-                    },
-                    options: CarouselOptions(
-                      height: imageSize,
-                      enableInfiniteScroll: false,
-                      enlargeCenterPage: true,
-                      viewportFraction: 0.6,
-                    ),
+                ? CustomCarousel(
+                    images: item.photos,
+                    imageHeight: imageSize,
                   )
                 : Icon(
                     Icons.monetization_on_outlined,
