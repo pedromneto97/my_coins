@@ -8,7 +8,7 @@ import '../../../shared/event_bus/event_bus.dart';
 import '../../../shared/event_bus/events/base_event.dart';
 import '../../../shared/event_bus/events/coin_added_event.dart';
 import '../../../shared/event_bus/events/coin_removed_event.dart';
-import '../../../shared/event_bus/events/collection_updated_event.dart';
+import '../../../shared/event_bus/events/collection_events.dart';
 
 part 'find_collection_details_state.dart';
 
@@ -24,15 +24,14 @@ class FindCollectionDetailsCubit extends Cubit<FindCollectionDetailsState> {
   })  : _useCase = useCase,
         _id = id,
         super(const FindCollectionDetailsInitial()) {
-    _subscription = EventBus.I.listen<BaseEvent>((event) {
-      if (event is CoinAddedEvent || event is CoinRemovedEvent) {
-        loadCollectionDetails();
-      } else if (event is CollectionUpdatedEvent) {
-        if (event.collection.id == _id) {
-          _updateCollection(event.collection);
-        }
-      }
-    });
+    _subscription = EventBus.I.listen<BaseEvent>(
+      (event) => switch (event) {
+        CoinAddedEvent() => loadCollectionDetails(),
+        CoinRemovedEvent() => loadCollectionDetails(),
+        CollectionUpdatedEvent(collection: final collection) => _updateCollection(collection),
+        BaseEvent() => null,
+      },
+    );
   }
 
   @override

@@ -5,7 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../domain/domain.dart';
 import '../../../../shared/event_bus/event_bus.dart';
-import '../../../../shared/event_bus/events/collection_updated_event.dart';
+import '../../../../shared/event_bus/events/collection_events.dart';
 
 part 'get_user_collections_state.dart';
 
