@@ -166,5 +166,21 @@
   "collection": "Coleção",
   "@collection": {
     "description": "Collection"
+  },
+  "confirmDeleteCollection": "Tem certeza que deseja excluir essa coleção?",
+  "@confirmDeleteCollection": {
+    "description": "Confirm delete collection"
+  },
+  "failedToDeleteCollection": "Ocorreu um erro ao excluir a coleção, tente novamente.",
+  "@failedToDeleteCollection": {
+    "description": "Failed to delete collection"
+  },
+  "youDontHaveAnyCollections": "Você não possui nenhuma coleção!",
+  "@youDontHaveAnyCollections": {
+    "description": "You don't have any collections"
+  },
+  "addACollectionToStart": "Adicione uma coleção para começar.",
+  "@addACollectionToStart": {
+    "description": "Add a collection to start"
   }
 }
