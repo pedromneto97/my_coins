@@ -22,6 +22,7 @@ class FindCollectionUseCase {
       name: collection.name,
       canEdit: collection.canEdit,
       isPublic: collection.isPublic,
+      templateId: collection.templateId,
       coinFamily: _mapToCollectionCoinFamily(
         collection.coins,
         template.coinFamily,

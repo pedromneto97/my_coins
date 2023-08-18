@@ -8,6 +8,7 @@ class CollectionWithTemplate extends Equatable {
   final List<CollectionCoinFamily> coinFamily;
   final bool isPublic;
   final bool canEdit;
+  final String templateId;
 
   const CollectionWithTemplate({
     required this.id,
@@ -15,8 +16,33 @@ class CollectionWithTemplate extends Equatable {
     required this.coinFamily,
     required this.isPublic,
     required this.canEdit,
+    required this.templateId,
   });
 
   @override
-  List<Object?> get props => [id, name, coinFamily, isPublic, canEdit];
+  List<Object?> get props => [
+        id,
+        name,
+        coinFamily,
+        isPublic,
+        canEdit,
+        templateId,
+      ];
+
+  CollectionWithTemplate copyWith({
+    String? id,
+    String? name,
+    List<CollectionCoinFamily>? coinFamily,
+    bool? isPublic,
+    bool? canEdit,
+    String? templateId,
+  }) =>
+      CollectionWithTemplate(
+        id: id ?? this.id,
+        name: name ?? this.name,
+        coinFamily: coinFamily ?? this.coinFamily,
+        isPublic: isPublic ?? this.isPublic,
+        canEdit: canEdit ?? this.canEdit,
+        templateId: templateId ?? this.templateId,
+      );
 }
