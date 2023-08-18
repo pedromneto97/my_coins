@@ -15,6 +15,7 @@ class CoinDetailsPage extends StatelessWidget {
   final String family;
   final String group;
   final String collectionId;
+  final bool canEdit;
 
   const CoinDetailsPage({
     super.key,
@@ -22,6 +23,7 @@ class CoinDetailsPage extends StatelessWidget {
     required this.family,
     required this.group,
     required this.collectionId,
+    required this.canEdit,
   });
 
   void _onTapAdd(BuildContext context) => showModalBottomSheet(
@@ -99,19 +101,21 @@ class CoinDetailsPage extends StatelessWidget {
                 value: item.preservation.toLocalizedString(context),
               ),
             ],
-            const SizedBox(height: 8),
-            if (item.inCollection)
-              OutlinedButton.icon(
-                onPressed: () => _onTapRemove(context),
-                label: Text(strings.removeCoinFromCollection),
-                icon: const Icon(Icons.remove_circle_outline),
-              )
-            else
-              FilledButton.icon(
-                icon: const Icon(Icons.add),
-                label: Text(strings.addCoinToCollection),
-                onPressed: () => _onTapAdd(context),
-              ),
+            if (canEdit) ...[
+              const SizedBox(height: 8),
+              if (item.inCollection)
+                OutlinedButton.icon(
+                  onPressed: () => _onTapRemove(context),
+                  label: Text(strings.removeCoinFromCollection),
+                  icon: const Icon(Icons.remove_circle_outline),
+                )
+              else
+                FilledButton.icon(
+                  icon: const Icon(Icons.add),
+                  label: Text(strings.addCoinToCollection),
+                  onPressed: () => _onTapAdd(context),
+                ),
+            ]
           ],
         ),
       ),

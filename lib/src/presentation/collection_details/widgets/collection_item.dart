@@ -9,6 +9,7 @@ class CollectionItem extends StatelessWidget {
   final String family;
   final String group;
   final String collectionId;
+  final bool canEdit;
 
   const CollectionItem({
     super.key,
@@ -16,6 +17,7 @@ class CollectionItem extends StatelessWidget {
     required this.family,
     required this.group,
     required this.collectionId,
+    required this.canEdit,
   });
 
   void onTapItem(BuildContext context) => context.router.push(
@@ -24,6 +26,7 @@ class CollectionItem extends StatelessWidget {
           family: family,
           group: group,
           collectionId: collectionId,
+          canEdit: canEdit,
         ),
       );
 

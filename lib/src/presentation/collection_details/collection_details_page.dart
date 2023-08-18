@@ -77,7 +77,7 @@ class CollectionDetailsPage extends StatelessWidget {
         floatingActionButton: BlocBuilder<FindCollectionDetailsCubit, FindCollectionDetailsState>(
           buildWhen: (previous, current) =>
               current is FindCollectionDetailsSuccess || previous is FindCollectionDetailsSuccess,
-          builder: (context, state) => state is FindCollectionDetailsSuccess
+          builder: (context, state) => state is FindCollectionDetailsSuccess && state.collection.canEdit
               ? FloatingActionButton(
                   onPressed: () => _onPressEdit(context, state.collection),
                   child: const Icon(Icons.edit_outlined),

@@ -64,6 +64,7 @@ class DetailsLoaded extends StatelessWidget {
                     group: group.name,
                     family: family.name,
                     collectionId: collection.id,
+                    canEdit: collection.canEdit,
                   );
                 },
               ),
