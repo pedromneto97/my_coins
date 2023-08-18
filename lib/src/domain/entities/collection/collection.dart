@@ -1,5 +1,6 @@
 import 'package:equatable/equatable.dart';
 
+import '../collection_with_template/collection_with_template.dart';
 import 'collection_coin.dart';
 
 class Collection extends Equatable {
@@ -19,6 +20,15 @@ class Collection extends Equatable {
     required this.isPublic,
   });
 
+  factory Collection.fromCollectionWithTemplate(CollectionWithTemplate collectionWithTemplate) => Collection(
+        id: collectionWithTemplate.id,
+        name: collectionWithTemplate.name,
+        templateId: collectionWithTemplate.templateId,
+        canEdit: collectionWithTemplate.canEdit,
+        coins: const [],
+        isPublic: collectionWithTemplate.isPublic,
+      );
+
   @override
   List<Object?> get props => [
         id,
@@ -28,4 +38,21 @@ class Collection extends Equatable {
         coins,
         isPublic,
       ];
+
+  Collection copyWith({
+    String? id,
+    String? name,
+    String? templateId,
+    bool? canEdit,
+    List<CollectionCoin>? coins,
+    bool? isPublic,
+  }) =>
+      Collection(
+        id: id ?? this.id,
+        name: name ?? this.name,
+        templateId: templateId ?? this.templateId,
+        canEdit: canEdit ?? this.canEdit,
+        coins: coins ?? this.coins,
+        isPublic: isPublic ?? this.isPublic,
+      );
 }
