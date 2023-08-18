@@ -25,7 +25,16 @@ class Collection extends Equatable {
         name: collectionWithTemplate.name,
         templateId: collectionWithTemplate.templateId,
         canEdit: collectionWithTemplate.canEdit,
-        coins: const [],
+        coins: [
+          for (final family in collectionWithTemplate.coinFamily)
+            for (final group in family.coinGroup)
+              for (final coin in group.coins)
+                CollectionCoin(
+                  coinId: coin.id,
+                  preservation: coin.preservation,
+                  photos: coin.photos,
+                ),
+        ],
         isPublic: collectionWithTemplate.isPublic,
       );
 
