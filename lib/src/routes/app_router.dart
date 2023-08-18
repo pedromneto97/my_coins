@@ -40,5 +40,8 @@ class AppRouter extends _$AppRouter {
         AutoRoute(
           page: EditCollectionRoute.page,
         ),
+        AutoRoute(
+          page: PublicCollectionsRoute.page,
+        ),
       ];
 }

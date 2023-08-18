@@ -12,7 +12,7 @@ class HomePage extends StatelessWidget {
 
   void _onTapMyCollection(BuildContext context) => context.router.push(const UserCollectionsRoute());
 
-  void _onTapCollections(BuildContext context) {}
+  void _onTapCollections(BuildContext context) => context.router.push(const PublicCollectionsRoute());
 
   @override
   Widget build(BuildContext context) {

@@ -5,5 +5,6 @@ export 'create_collection/create_collection_page.dart';
 export 'edit_collection/edit_collection_page.dart';
 export 'home/home_page.dart';
 export 'profile/profile_page.dart';
+export 'public_collections/public_collections_page.dart';
 export 'splash_screen/splash_screen_page.dart';
 export 'user_collections/user_collections_page.dart';

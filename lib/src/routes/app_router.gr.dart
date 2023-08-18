@@ -25,6 +25,7 @@ abstract class _$AppRouter extends RootStackRouter {
           family: args.family,
           group: args.group,
           collectionId: args.collectionId,
+          canEdit: args.canEdit,
         ),
       );
     },
@@ -74,6 +75,12 @@ abstract class _$AppRouter extends RootStackRouter {
         child: const ProfilePage(),
       );
     },
+    PublicCollectionsRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const PublicCollectionsPage(),
+      );
+    },
     SplashScreenRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
@@ -98,6 +105,7 @@ class CoinDetailsRoute extends PageRouteInfo<CoinDetailsRouteArgs> {
     required String family,
     required String group,
     required String collectionId,
+    required bool canEdit,
     List<PageRouteInfo>? children,
   }) : super(
           CoinDetailsRoute.name,
@@ -107,6 +115,7 @@ class CoinDetailsRoute extends PageRouteInfo<CoinDetailsRouteArgs> {
             family: family,
             group: group,
             collectionId: collectionId,
+            canEdit: canEdit,
           ),
           initialChildren: children,
         );
@@ -123,6 +132,7 @@ class CoinDetailsRouteArgs {
     required this.family,
     required this.group,
     required this.collectionId,
+    required this.canEdit,
   });
 
   final Key? key;
@@ -135,9 +145,11 @@ class CoinDetailsRouteArgs {
 
   final String collectionId;
 
+  final bool canEdit;
+
   @override
   String toString() {
-    return 'CoinDetailsRouteArgs{key: $key, item: $item, family: $family, group: $group, collectionId: $collectionId}';
+    return 'CoinDetailsRouteArgs{key: $key, item: $item, family: $family, group: $group, collectionId: $collectionId, canEdit: $canEdit}';
   }
 }
 
@@ -268,6 +280,20 @@ class ProfileRoute extends PageRouteInfo<void> {
         );
 
   static const String name = 'ProfileRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [PublicCollectionsPage]
+class PublicCollectionsRoute extends PageRouteInfo<void> {
+  const PublicCollectionsRoute({List<PageRouteInfo>? children})
+      : super(
+          PublicCollectionsRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'PublicCollectionsRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
 }
