@@ -30,6 +30,11 @@ class MyApp extends StatelessWidget {
           seedColor: Colors.green.shade900,
           brightness: Brightness.dark,
         ),
+        inputDecorationTheme: InputDecorationTheme(
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(12),
+          ),
+        ),
       ),
     );
   }
