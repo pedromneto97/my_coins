@@ -1,8 +1,10 @@
-import 'package:auto_route/annotations.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 
+import '../../domain/domain.dart';
+import '../../routes/app_router.dart';
 import '../../shared/widgets/templates/error_template.dart';
 import '../../utils/localizations.dart';
 import 'cubit/find_collection_details_cubit.dart';
@@ -17,9 +19,17 @@ class CollectionDetailsPage extends StatelessWidget {
     @PathParam('id') required this.id,
   });
 
-  void _onPressEdit(BuildContext context) {}
+  void _onPressEdit(
+    BuildContext context,
+    CollectionWithTemplate collectionWithTemplate,
+  ) =>
+      context.router.push(
+        EditCollectionRoute(
+          collection: Collection.fromCollectionWithTemplate(collectionWithTemplate),
+        ),
+      );
 
-  void _onPressDelete(BuildContext context) {}
+  void _onPressFilter(BuildContext context) {}
 
   @override
   Widget build(BuildContext context) {
@@ -29,13 +39,16 @@ class CollectionDetailsPage extends StatelessWidget {
         appBar: AppBar(
           title: Text(context.strings.collectionDetails),
           actions: [
-            IconButton(
-              icon: const Icon(Icons.edit),
-              onPressed: () => _onPressEdit(context),
-            ),
-            IconButton(
-              icon: const Icon(Icons.delete),
-              onPressed: () => _onPressDelete(context),
+            BlocSelector<FindCollectionDetailsCubit, FindCollectionDetailsState, bool>(
+              selector: (state) => state is FindCollectionDetailsSuccess,
+              builder: (context, isDetailsLoaded) {
+                return isDetailsLoaded
+                    ? IconButton(
+                        icon: const Icon(Icons.filter_alt_outlined),
+                        onPressed: () => _onPressFilter(context),
+                      )
+                    : const SizedBox.shrink();
+              },
             ),
           ],
         ),
@@ -60,6 +73,16 @@ class CollectionDetailsPage extends StatelessWidget {
               child: child,
             );
           },
+        ),
+        floatingActionButton: BlocBuilder<FindCollectionDetailsCubit, FindCollectionDetailsState>(
+          buildWhen: (previous, current) =>
+              current is FindCollectionDetailsSuccess || previous is FindCollectionDetailsSuccess,
+          builder: (context, state) => state is FindCollectionDetailsSuccess
+              ? FloatingActionButton(
+                  onPressed: () => _onPressEdit(context, state.collection),
+                  child: const Icon(Icons.edit_outlined),
+                )
+              : const SizedBox.shrink(),
         ),
       ),
     );
