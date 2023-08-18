@@ -182,5 +182,13 @@
   "addACollectionToStart": "Adicione uma coleção para começar.",
   "@addACollectionToStart": {
     "description": "Add a collection to start"
+  },
+  "noCollectionsFound": "Nenhuma coleção encontrada!",
+  "@noCollectionsFound": {
+    "description": "No collections found"
+  },
+  "createAPublicCollection": "Crie uma coleção pública para que outras pessoas possam ver.",
+  "@createAPublicCollection": {
+    "description": "Create a public collection"
   }
 }
