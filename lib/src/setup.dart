@@ -144,6 +144,11 @@ void _setupUseCases() {
       driver: getIt.get(),
     ),
   );
+  getIt.registerFactory(
+    () => UpdateCollectionUseCase(
+      provider: getIt.get(),
+    ),
+  );
 }
 
 void _setupCubits() {
