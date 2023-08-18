@@ -1,8 +1,9 @@
-import 'package:auto_route/annotations.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 
+import '../../routes/app_router.dart';
 import '../../shared/widgets/templates/error_template.dart';
 import '../../utils/localizations.dart';
 import 'cubit/get_user_collections/get_user_collections_cubit.dart';
@@ -11,6 +12,8 @@ import 'widgets/user_collections_loaded.dart';
 @RoutePage()
 class UserCollectionsPage extends StatelessWidget {
   const UserCollectionsPage({super.key});
+
+  void _onTapAddCollection(BuildContext context) => context.router.push(const CreateCollectionRoute());
 
   @override
   Widget build(BuildContext context) {
@@ -47,6 +50,10 @@ class UserCollectionsPage extends StatelessWidget {
               child: child,
             );
           },
+        ),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () => _onTapAddCollection(context),
+          child: const Icon(Icons.add),
         ),
       ),
     );

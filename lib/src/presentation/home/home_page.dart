@@ -14,8 +14,6 @@ class HomePage extends StatelessWidget {
 
   void _onTapCollections(BuildContext context) {}
 
-  void _onTapAddCollection(BuildContext context) => context.router.push(const CreateCollectionRoute());
-
   @override
   Widget build(BuildContext context) {
     final strings = context.strings;
@@ -51,10 +49,6 @@ class HomePage extends StatelessWidget {
           ),
           const Divider(),
         ],
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () => _onTapAddCollection(context),
-        child: const Icon(Icons.add),
       ),
     );
   }
