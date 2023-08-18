@@ -154,5 +154,17 @@
   "no": "Não",
   "@no": {
     "description": "No"
+  },
+  "failedToUpdateCollection": "Ocorreu um erro ao atualizar a coleção, tente novamente.",
+  "@failedToUpdateCollection": {
+    "description": "Failed to update collection"
+  },
+  "editCollection": "Editar coleção",
+  "@editCollection": {
+    "description": "Edit collection"
+  },
+  "collection": "Coleção",
+  "@collection": {
+    "description": "Collection"
   }
 }
