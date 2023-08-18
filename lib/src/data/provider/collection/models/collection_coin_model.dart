@@ -21,6 +21,7 @@ class CollectionCoinModel {
   factory CollectionCoinModel.fromEntity(CollectionCoin coin) => CollectionCoinModel(
         photos: coin.photos,
         coinId: coin.coinId,
+        preservation: coin.preservation,
       );
 
   Map<String, dynamic> toJson() => _$CollectionCoinModelToJson(this);
