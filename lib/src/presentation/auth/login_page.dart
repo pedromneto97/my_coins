@@ -8,7 +8,7 @@ import 'package:vector_graphics/vector_graphics.dart';
 
 import '../../domain/domain.dart';
 import '../../routes/app_router.dart';
-import '../../shared/assets/SvgAssets.dart';
+import '../../shared/assets/svg_assets.dart';
 
 @RoutePage()
 class LoginPage extends StatelessWidget {
