@@ -196,7 +196,7 @@ class CollectionProviderImpl implements CollectionProvider {
         collection,
         _currentUserId,
       );
-      await _collectionReference.doc(collection.id).set(model);
+      await _collectionReference.doc(collection.id).set(model, SetOptions(merge: true));
 
       final snapshot = await _collectionReference.doc(collection.id).get();
 
