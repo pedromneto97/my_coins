@@ -7,6 +7,7 @@ import '../../routes/app_router.dart';
 import '../../shared/widgets/templates/error_template.dart';
 import '../../utils/localizations.dart';
 import 'cubit/get_user_collections/get_user_collections_cubit.dart';
+import 'widgets/empty_collections.dart';
 import 'widgets/user_collections_loaded.dart';
 
 @RoutePage()
@@ -29,7 +30,9 @@ class UserCollectionsPage extends StatelessWidget {
           builder: (context, state) {
             Widget child;
 
-            if (state is GetUserCollectionsLoaded) {
+            if (state is EmptyUserCollections) {
+              child = const EmptyCollections();
+            } else if (state is GetUserCollectionsLoaded) {
               child = UserCollectionsLoaded(
                 collections: state.collections,
               );

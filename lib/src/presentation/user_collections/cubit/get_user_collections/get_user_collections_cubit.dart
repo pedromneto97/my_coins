@@ -17,8 +17,13 @@ class GetUserCollectionsCubit extends Cubit<GetUserCollectionsState> {
     required GetUserCollectionsUseCase useCase,
   })  : _useCase = useCase,
         super(const GetUserCollectionsInitial()) {
-    _subscription = EventBus.I.listen<CollectionUpdatedEvent>(
-      (event) => _updateCollection(event.collection),
+    _subscription = EventBus.I.listen<CollectionEvents>(
+      (event) => switch (event) {
+        CollectionUpdatedEvent(collection: final collection) => _updateCollection(collection),
+        CollectionDeletedEvent(collection: final collection) => _removeCollection(collection),
+        CollectionCreatedEvent(collection: final collection) => _addCollection(collection),
+        CollectionEvents() => null,
+      },
     );
   }
 
@@ -33,6 +38,10 @@ class GetUserCollectionsCubit extends Cubit<GetUserCollectionsState> {
     emit(const GetUserCollectionsLoading());
     try {
       final collections = await _useCase();
+
+      if (collections.isEmpty) {
+        return emit(const EmptyUserCollections());
+      }
 
       emit(
         GetUserCollectionsLoaded(collections: collections),
@@ -51,6 +60,32 @@ class GetUserCollectionsCubit extends Cubit<GetUserCollectionsState> {
         collections[index] = collection;
         emit(GetUserCollectionsLoaded(collections: collections));
       }
+    }
+  }
+
+  void _removeCollection(Collection collection) {
+    final state = this.state;
+    if (state is GetUserCollectionsLoaded) {
+      final collections = [...state.collections];
+      final index = collections.indexWhere((element) => element.id == collection.id);
+      if (index != -1) {
+        collections.removeAt(index);
+
+        emit(
+          collections.isEmpty ? const EmptyUserCollections() : GetUserCollectionsLoaded(collections: collections),
+        );
+      }
+    }
+  }
+
+  void _addCollection(Collection collection) {
+    final state = this.state;
+    if (state is GetUserCollectionsLoaded) {
+      final collections = [...state.collections];
+      collections.add(collection);
+      emit(GetUserCollectionsLoaded(collections: collections));
+    } else if (state is EmptyUserCollections) {
+      emit(GetUserCollectionsLoaded(collections: [collection]));
     }
   }
 }

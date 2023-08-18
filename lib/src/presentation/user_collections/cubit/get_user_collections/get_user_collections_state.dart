@@ -15,6 +15,10 @@ class GetUserCollectionsLoading extends GetUserCollectionsState {
   const GetUserCollectionsLoading();
 }
 
+class EmptyUserCollections extends GetUserCollectionsState {
+  const EmptyUserCollections();
+}
+
 class GetUserCollectionsLoaded extends GetUserCollectionsState {
   final List<Collection> collections;
 
