@@ -49,6 +49,8 @@ class _CollectionFormLoadedState extends State<CollectionFormLoaded> {
     }
   }
 
+  bool get _isEditing => widget.collection != null;
+
   @override
   Widget build(BuildContext context) {
     final items = [
@@ -81,12 +83,15 @@ class _CollectionFormLoadedState extends State<CollectionFormLoaded> {
             children: [
               BlocBuilder<SelectedTemplateCubit, CollectionTemplate?>(
                 builder: (context, state) => DropdownButtonFormField<CollectionTemplate?>(
-                  items: items,
-                  onChanged: widget.collection == null ? context.read<SelectedTemplateCubit>().changeTemplate : null,
-                  value: state,
-                  validator: _validateTemplate,
-                ),
+                    items: items,
+                    onChanged: _isEditing ? null : context.read<SelectedTemplateCubit>().changeTemplate,
+                    value: state,
+                    validator: _validateTemplate,
+                    decoration: InputDecoration(
+                      labelText: strings.collection,
+                    )),
               ),
+              const SizedBox(height: 16),
               BlocConsumer<SelectedTemplateCubit, CollectionTemplate?>(
                 listener: _onChangedSelectedTemplate,
                 builder: (context, selectedTemplate) {
@@ -134,7 +139,7 @@ class _CollectionFormLoadedState extends State<CollectionFormLoaded> {
                       ElevatedButton(
                         onPressed: () => _onSubmitCollection(context),
                         child: Text(
-                          strings.createCollection,
+                          _isEditing ? strings.editCollection : strings.createCollection,
                         ),
                       ),
                     ],
