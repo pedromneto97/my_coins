@@ -46,6 +46,16 @@ abstract class _$AppRouter extends RootStackRouter {
         child: const CreateCollectionPage(),
       );
     },
+    EditCollectionRoute.name: (routeData) {
+      final args = routeData.argsAs<EditCollectionRouteArgs>();
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: EditCollectionPage(
+          key: args.key,
+          collection: args.collection,
+        ),
+      );
+    },
     HomeRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
@@ -181,6 +191,43 @@ class CreateCollectionRoute extends PageRouteInfo<void> {
   static const String name = 'CreateCollectionRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [EditCollectionPage]
+class EditCollectionRoute extends PageRouteInfo<EditCollectionRouteArgs> {
+  EditCollectionRoute({
+    Key? key,
+    required Collection collection,
+    List<PageRouteInfo>? children,
+  }) : super(
+          EditCollectionRoute.name,
+          args: EditCollectionRouteArgs(
+            key: key,
+            collection: collection,
+          ),
+          initialChildren: children,
+        );
+
+  static const String name = 'EditCollectionRoute';
+
+  static const PageInfo<EditCollectionRouteArgs> page = PageInfo<EditCollectionRouteArgs>(name);
+}
+
+class EditCollectionRouteArgs {
+  const EditCollectionRouteArgs({
+    this.key,
+    required this.collection,
+  });
+
+  final Key? key;
+
+  final Collection collection;
+
+  @override
+  String toString() {
+    return 'EditCollectionRouteArgs{key: $key, collection: $collection}';
+  }
 }
 
 /// generated route for
