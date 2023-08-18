@@ -89,6 +89,7 @@ void _setupProviders() {
       storage: FirebaseStorage.instance,
       uuid: const Uuid(),
       crashlytics: getIt.get(),
+      firebaseAuth: FirebaseAuth.instance,
     ),
   );
 }

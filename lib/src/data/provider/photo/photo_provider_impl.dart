@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:uuid/uuid.dart';
 
@@ -9,14 +10,19 @@ class PhotoProviderImpl implements PhotoProvider {
   final FirebaseStorage _storage;
   final Uuid _uuid;
   final CrashlyticsProvider _crashlytics;
+  final FirebaseAuth _firebaseAuth;
 
   const PhotoProviderImpl({
     required FirebaseStorage storage,
     required Uuid uuid,
     required CrashlyticsProvider crashlytics,
+    required FirebaseAuth firebaseAuth,
   })  : _uuid = uuid,
         _storage = storage,
-        _crashlytics = crashlytics;
+        _crashlytics = crashlytics,
+        _firebaseAuth = firebaseAuth;
+
+  String get _userId => _firebaseAuth.currentUser!.uid;
 
   @override
   Future<void> deletePhoto(String url) async {
@@ -39,7 +45,7 @@ class PhotoProviderImpl implements PhotoProvider {
   Future<String> storePhoto(File file) async {
     try {
       final extension = _getExtensionFromFile(file);
-      final ref = _storage.ref().child('photos/${_uuid.v4()}.$extension');
+      final ref = _storage.ref().child('photos/$_userId/${_uuid.v4()}.$extension');
 
       final snapshot = await ref.putFile(file);
 
