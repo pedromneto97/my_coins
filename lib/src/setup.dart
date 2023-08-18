@@ -26,6 +26,7 @@ import 'presentation/collection_details/cubit/find_collection_details_cubit.dart
 import 'presentation/create_collection/cubit/create_collection_cubit.dart';
 import 'presentation/edit_collection/cubit/update_collection_cubit.dart';
 import 'presentation/edit_collection/widgets/confirm_delete/cubit/delete_collection_cubit.dart';
+import 'presentation/public_collections/cubit/get_public_collections_cubit.dart';
 import 'presentation/user_collections/cubit/get_user_collections/get_user_collections_cubit.dart';
 import 'shared/widgets/collection_form/cubit/get_templates/get_templates_cubit.dart';
 import 'shared/widgets/collection_form/cubit/public_collection/public_collection_cubit.dart';
@@ -219,5 +220,11 @@ void _setupCubits() {
   );
   getIt.registerFactoryParam<DeleteCollectionCubit, Collection, void>(
     (collection, _) => DeleteCollectionCubit(useCase: getIt.get(), collection: collection),
+  );
+
+  getIt.registerFactory(
+    () => GetPublicCollectionsCubit(
+      useCase: getIt.get(),
+    ),
   );
 }
