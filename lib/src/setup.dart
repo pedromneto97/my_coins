@@ -150,6 +150,13 @@ void _setupUseCases() {
       provider: getIt.get(),
     ),
   );
+  getIt.registerFactory(
+    () => DeleteCollectionUseCase(
+      provider: getIt.get(),
+      crashlytics: getIt.get(),
+      removeCoinUseCase: getIt.get(),
+    ),
+  );
 }
 
 void _setupCubits() {
