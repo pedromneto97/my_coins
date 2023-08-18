@@ -8,6 +8,7 @@ import '../../../shared/event_bus/event_bus.dart';
 import '../../../shared/event_bus/events/base_event.dart';
 import '../../../shared/event_bus/events/coin_added_event.dart';
 import '../../../shared/event_bus/events/coin_removed_event.dart';
+import '../../../shared/event_bus/events/collection_updated_event.dart';
 
 part 'find_collection_details_state.dart';
 
@@ -26,6 +27,10 @@ class FindCollectionDetailsCubit extends Cubit<FindCollectionDetailsState> {
     _subscription = EventBus.I.listen<BaseEvent>((event) {
       if (event is CoinAddedEvent || event is CoinRemovedEvent) {
         loadCollectionDetails();
+      } else if (event is CollectionUpdatedEvent) {
+        if (event.collection.id == _id) {
+          _updateCollection(event.collection);
+        }
       }
     });
   }
@@ -45,6 +50,20 @@ class FindCollectionDetailsCubit extends Cubit<FindCollectionDetailsState> {
       emit(FindCollectionDetailsSuccess(collection: collection));
     } catch (e) {
       emit(const FindCollectionDetailsFailure());
+    }
+  }
+
+  void _updateCollection(Collection collection) {
+    final state = this.state;
+    if (state is FindCollectionDetailsSuccess) {
+      emit(
+        FindCollectionDetailsSuccess(
+          collection: state.collection.copyWith(
+            name: collection.name,
+            isPublic: collection.isPublic,
+          ),
+        ),
+      );
     }
   }
 }
