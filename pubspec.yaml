@@ -1,7 +1,7 @@
 name: my_coins
 description: Create your coin collection and follow up your progress
 publish_to: 'none'
-version: 0.2.1+1
+version: 0.2.2+1
 
 environment:
   sdk: '>=3.0.6 <4.0.0'
