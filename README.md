@@ -1,4 +1,6 @@
-# my_coins
+# My Coins
+
+[![Codemagic build status](https://api.codemagic.io/apps/64d3d8e76c90a9e65ee6d557/64d3d8e76c90a9e65ee6d556/status_badge.svg)](https://codemagic.io/apps/64d3d8e76c90a9e65ee6d557/64d3d8e76c90a9e65ee6d556/latest_build)
 
 Create your coin collection and follow up your progress
 
