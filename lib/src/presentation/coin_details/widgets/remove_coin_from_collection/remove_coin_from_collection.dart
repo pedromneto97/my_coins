@@ -54,29 +54,31 @@ class RemoveCoinFromCollection extends StatelessWidget {
               ],
             ),
             const SizedBox(height: 24),
-            Row(
-              children: [
-                Expanded(
-                  child: OutlinedButton(
-                    onPressed: Navigator.of(context).pop,
-                    child: Text(strings.no),
+            SafeArea(
+              child: Row(
+                children: [
+                  Expanded(
+                    child: OutlinedButton(
+                      onPressed: Navigator.of(context).pop,
+                      child: Text(strings.no),
+                    ),
                   ),
-                ),
-                const SizedBox(width: 8),
-                BlocConsumer<RemoveCoinCubit, RemoveCoinState>(
-                  listener: _onRemoveCoinStateChange,
-                  builder: (context, state) {
-                    final isLoading = state is RemoveCoinLoading;
+                  const SizedBox(width: 8),
+                  BlocConsumer<RemoveCoinCubit, RemoveCoinState>(
+                    listener: _onRemoveCoinStateChange,
+                    builder: (context, state) {
+                      final isLoading = state is RemoveCoinLoading;
 
-                    return Expanded(
-                      child: FilledButton(
-                        onPressed: isLoading ? null : context.read<RemoveCoinCubit>().removeCoin,
-                        child: isLoading ? const CircularProgressIndicator() : Text(strings.yes),
-                      ),
-                    );
-                  },
-                ),
-              ],
+                      return Expanded(
+                        child: FilledButton(
+                          onPressed: isLoading ? null : context.read<RemoveCoinCubit>().removeCoin,
+                          child: isLoading ? const CircularProgressIndicator() : Text(strings.yes),
+                        ),
+                      );
+                    },
+                  ),
+                ],
+              ),
             ),
           ],
         ),

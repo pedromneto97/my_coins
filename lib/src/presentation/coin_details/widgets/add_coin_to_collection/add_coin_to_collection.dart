@@ -124,24 +124,26 @@ class AddCoinToCollection extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 16),
-            BlocConsumer<AddCoinCubit, AddCoinState>(
-              listener: _onAddCoinStateChange,
-              builder: (context, state) {
-                if (state is AddCoinLoading) {
-                  return const FilledButton(
-                    onPressed: null,
-                    child: CircularProgressIndicator(),
-                  );
-                }
+            SafeArea(
+              child: BlocConsumer<AddCoinCubit, AddCoinState>(
+                listener: _onAddCoinStateChange,
+                builder: (context, state) {
+                  if (state is AddCoinLoading) {
+                    return const FilledButton(
+                      onPressed: null,
+                      child: CircularProgressIndicator(),
+                    );
+                  }
 
-                return FilledButton.icon(
-                  onPressed: () => _addCoinToCollection(context),
-                  label: Text(
-                    context.strings.addCoinToCollection,
-                  ),
-                  icon: const Icon(Icons.add),
-                );
-              },
+                  return FilledButton.icon(
+                    onPressed: () => _addCoinToCollection(context),
+                    label: Text(
+                      context.strings.addCoinToCollection,
+                    ),
+                    icon: const Icon(Icons.add),
+                  );
+                },
+              ),
             ),
           ],
         ),
