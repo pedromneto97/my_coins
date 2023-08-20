@@ -57,29 +57,31 @@ class ConfirmDeleteCollection extends StatelessWidget {
               ],
             ),
             const SizedBox(height: 24),
-            Row(
-              children: [
-                Expanded(
-                  child: OutlinedButton(
-                    onPressed: Navigator.of(context).pop,
-                    child: Text(strings.no),
+            SafeArea(
+              child: Row(
+                children: [
+                  Expanded(
+                    child: OutlinedButton(
+                      onPressed: Navigator.of(context).pop,
+                      child: Text(strings.no),
+                    ),
                   ),
-                ),
-                const SizedBox(width: 8),
-                BlocConsumer<DeleteCollectionCubit, DeleteCollectionState>(
-                  listener: _onDeleteCollectionStateChange,
-                  builder: (context, state) {
-                    final isLoading = state is DeleteCollectionLoading;
+                  const SizedBox(width: 8),
+                  BlocConsumer<DeleteCollectionCubit, DeleteCollectionState>(
+                    listener: _onDeleteCollectionStateChange,
+                    builder: (context, state) {
+                      final isLoading = state is DeleteCollectionLoading;
 
-                    return Expanded(
-                      child: FilledButton(
-                        onPressed: isLoading ? null : context.read<DeleteCollectionCubit>().deleteCollection,
-                        child: isLoading ? const CircularProgressIndicator() : Text(strings.yes),
-                      ),
-                    );
-                  },
-                ),
-              ],
+                      return Expanded(
+                        child: FilledButton(
+                          onPressed: isLoading ? null : context.read<DeleteCollectionCubit>().deleteCollection,
+                          child: isLoading ? const CircularProgressIndicator() : Text(strings.yes),
+                        ),
+                      );
+                    },
+                  ),
+                ],
+              ),
             ),
           ],
         ),
