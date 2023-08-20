@@ -190,5 +190,13 @@
   "createAPublicCollection": "Crie uma coleção pública para que outras pessoas possam ver.",
   "@createAPublicCollection": {
     "description": "Create a public collection"
+  },
+  "coinErrors": "Erros na moeda",
+  "@coinErrors": {
+    "description": "Coin errors"
+  },
+  "coinErrorsDescription": "Veja a lista dos erros mais comuns que as moedas podem ter.",
+  "@coinErrorsDescription": {
+    "description": "Coin errors description"
   }
 }

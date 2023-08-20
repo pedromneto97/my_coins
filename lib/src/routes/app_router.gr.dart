@@ -29,6 +29,12 @@ abstract class _$AppRouter extends RootStackRouter {
         ),
       );
     },
+    CoinErrorsRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const CoinErrorsPage(),
+      );
+    },
     CollectionDetailsRoute.name: (routeData) {
       final pathParams = routeData.inheritedPathParams;
       final args = routeData.argsAs<CollectionDetailsRouteArgs>(
@@ -151,6 +157,20 @@ class CoinDetailsRouteArgs {
   String toString() {
     return 'CoinDetailsRouteArgs{key: $key, item: $item, family: $family, group: $group, collectionId: $collectionId, canEdit: $canEdit}';
   }
+}
+
+/// generated route for
+/// [CoinErrorsPage]
+class CoinErrorsRoute extends PageRouteInfo<void> {
+  const CoinErrorsRoute({List<PageRouteInfo>? children})
+      : super(
+          CoinErrorsRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'CoinErrorsRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
 }
 
 /// generated route for

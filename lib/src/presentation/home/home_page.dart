@@ -14,6 +14,8 @@ class HomePage extends StatelessWidget {
 
   void _onTapCollections(BuildContext context) => context.router.push(const PublicCollectionsRoute());
 
+  void _onTapCoinErrors(BuildContext context) => context.router.push(const CoinErrorsRoute());
+
   @override
   Widget build(BuildContext context) {
     final strings = context.strings;
@@ -22,7 +24,7 @@ class HomePage extends StatelessWidget {
       appBar: AppBar(
         title: Text(strings.welcome),
       ),
-      body: Column(
+      body: ListView(
         children: [
           const Divider(),
           ListTile(
@@ -39,6 +41,14 @@ class HomePage extends StatelessWidget {
             leading: const Icon(Icons.list),
             trailing: const Icon(Icons.arrow_forward_ios_rounded),
             onTap: () => _onTapCollections(context),
+          ),
+          const Divider(),
+          ListTile(
+            title: Text(strings.coinErrors),
+            subtitle: Text(strings.coinErrorsDescription),
+            leading: const Icon(Icons.error_outline),
+            trailing: const Icon(Icons.arrow_forward_ios_rounded),
+            onTap: () => _onTapCoinErrors(context),
           ),
           const Divider(),
           ListTile(

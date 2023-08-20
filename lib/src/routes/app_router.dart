@@ -43,5 +43,8 @@ class AppRouter extends _$AppRouter {
         AutoRoute(
           page: PublicCollectionsRoute.page,
         ),
+        AutoRoute(
+          page: CoinErrorsRoute.page,
+        ),
       ];
 }
