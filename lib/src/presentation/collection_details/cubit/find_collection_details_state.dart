@@ -16,14 +16,25 @@ class FindCollectionDetailsLoading extends FindCollectionDetailsState {
 }
 
 class FindCollectionDetailsSuccess extends FindCollectionDetailsState {
-  final CollectionWithTemplate collection;
+  final CollectionWithTemplate originalCollection;
+  final List<CollectionCoinFamily> filteredFamilies;
 
   const FindCollectionDetailsSuccess({
-    required this.collection,
+    required this.originalCollection,
+    required this.filteredFamilies,
   });
 
   @override
-  List<Object> get props => [collection];
+  List<Object> get props => [originalCollection, filteredFamilies];
+
+  FindCollectionDetailsState copyWith({
+    CollectionWithTemplate? originalCollection,
+    List<CollectionCoinFamily>? filteredFamilies,
+  }) =>
+      FindCollectionDetailsSuccess(
+        originalCollection: originalCollection ?? this.originalCollection,
+        filteredFamilies: filteredFamilies ?? this.filteredFamilies,
+      );
 }
 
 class FindCollectionDetailsFailure extends FindCollectionDetailsState {

@@ -7,8 +7,10 @@ import '../../domain/domain.dart';
 import '../../routes/app_router.dart';
 import '../../shared/widgets/templates/error_template.dart';
 import '../../utils/localizations.dart';
+import 'cubit/filter.dart';
 import 'cubit/find_collection_details_cubit.dart';
 import 'widgets/details_loaded.dart';
+import 'widgets/filter_bottom_sheet/filter_bottom_sheet.dart';
 
 @RoutePage()
 class CollectionDetailsPage extends StatelessWidget {
@@ -29,7 +31,20 @@ class CollectionDetailsPage extends StatelessWidget {
         ),
       );
 
-  void _onPressFilter(BuildContext context) {}
+  void _onPressFilter(BuildContext context) async {
+    final cubit = context.read<FindCollectionDetailsCubit>();
+
+    final filter = await showModalBottomSheet<Filter>(
+      context: context,
+      builder: (context) => FilterBottomSheet(
+        filter: cubit.filter,
+      ),
+    );
+
+    if (filter != null) {
+      cubit.filterCollection(filter);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -61,7 +76,7 @@ class CollectionDetailsPage extends StatelessWidget {
                 child: CircularProgressIndicator(),
               );
             } else if (state is FindCollectionDetailsSuccess) {
-              child = DetailsLoaded(collection: state.collection);
+              child = const DetailsLoaded();
             } else {
               child = ErrorTemplate(
                 onRetry: context.read<FindCollectionDetailsCubit>().loadCollectionDetails,
@@ -77,9 +92,9 @@ class CollectionDetailsPage extends StatelessWidget {
         floatingActionButton: BlocBuilder<FindCollectionDetailsCubit, FindCollectionDetailsState>(
           buildWhen: (previous, current) =>
               current is FindCollectionDetailsSuccess || previous is FindCollectionDetailsSuccess,
-          builder: (context, state) => state is FindCollectionDetailsSuccess && state.collection.canEdit
+          builder: (context, state) => state is FindCollectionDetailsSuccess && state.originalCollection.canEdit
               ? FloatingActionButton(
-                  onPressed: () => _onPressEdit(context, state.collection),
+                  onPressed: () => _onPressEdit(context, state.originalCollection),
                   child: const Icon(Icons.edit_outlined),
                 )
               : const SizedBox.shrink(),
