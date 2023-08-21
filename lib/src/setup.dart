@@ -1,4 +1,4 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:cloud_firestore/cloud_firestore.dart' hide Filter;
 import 'package:firebase_auth/firebase_auth.dart' hide EmailAuthProvider;
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
@@ -22,7 +22,9 @@ import 'presentation/coin_details/widgets/add_coin_to_collection/cubit/add_coin/
 import 'presentation/coin_details/widgets/add_coin_to_collection/cubit/selected_photos/selected_photos_cubit.dart';
 import 'presentation/coin_details/widgets/add_coin_to_collection/cubit/selected_preservation/selected_preservation_cubit.dart';
 import 'presentation/coin_details/widgets/remove_coin_from_collection/cubit/remove_coin_cubit.dart';
+import 'presentation/collection_details/cubit/filter.dart';
 import 'presentation/collection_details/cubit/find_collection_details_cubit.dart';
+import 'presentation/collection_details/widgets/filter_bottom_sheet/cubit/filter_cubit.dart';
 import 'presentation/create_collection/cubit/create_collection_cubit.dart';
 import 'presentation/edit_collection/cubit/update_collection_cubit.dart';
 import 'presentation/edit_collection/widgets/confirm_delete/cubit/delete_collection_cubit.dart';
@@ -231,4 +233,5 @@ void _setupCubits() {
       useCase: getIt.get(),
     ),
   );
+  getIt.registerFactoryParam<FilterCubit, Filter, void>((filter, _) => FilterCubit(filter));
 }

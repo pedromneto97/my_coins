@@ -198,5 +198,13 @@
   "coinErrorsDescription": "Veja a lista dos erros mais comuns que as moedas podem ter.",
   "@coinErrorsDescription": {
     "description": "Coin errors description"
+  },
+  "missingCoins": "Moedas que faltam",
+  "@missingCoins": {
+    "description": "Missing coins"
+  },
+  "rareCoins": "Moedas raras",
+  "@rareCoins": {
+    "description": "Rare coins"
   }
 }
