@@ -13,4 +13,13 @@ class CollectionCoinFamily extends Equatable {
 
   @override
   List<Object?> get props => [name, coinGroup];
+
+  CollectionCoinFamily copyWith({
+    String? name,
+    List<CollectionCoinGroup>? coinGroup,
+  }) =>
+      CollectionCoinFamily(
+        name: name ?? this.name,
+        coinGroup: coinGroup ?? this.coinGroup,
+      );
 }
