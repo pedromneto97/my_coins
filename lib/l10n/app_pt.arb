@@ -206,5 +206,17 @@
   "rareCoins": "Moedas raras",
   "@rareCoins": {
     "description": "Rare coins"
+  },
+  "filters": "Filtros",
+  "@filters": {
+    "description": "Filters"
+  },
+  "clear": "Limpar",
+  "@clear": {
+    "description": "Clear"
+  },
+  "apply": "Aplicar",
+  "@apply": {
+    "description": "Apply"
   }
 }

@@ -4,6 +4,7 @@ import 'package:get_it/get_it.dart';
 
 import '../../../../shared/widgets/bottom_sheet/custom_bottom_sheet.dart';
 import '../../../../utils/filter_to_localized_text.dart';
+import '../../../../utils/localizations.dart';
 import '../../cubit/filter.dart';
 import 'cubit/filter_cubit.dart';
 
@@ -23,10 +24,12 @@ class FilterBottomSheet extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final strings = context.strings;
+
     return BlocProvider<FilterCubit>(
       create: (context) => GetIt.I.get<FilterCubit>(param1: filter),
       child: CustomBottomSheet(
-        title: 'Filtros',
+        title: strings.filters,
         child: Column(
           children: [
             BlocBuilder<FilterCubit, Filter>(
@@ -54,14 +57,14 @@ class FilterBottomSheet extends StatelessWidget {
                   Expanded(
                     child: OutlinedButton(
                       onPressed: () => _onPressClear(context),
-                      child: const Text('Limpar'),
+                      child: Text(strings.clear),
                     ),
                   ),
                   const SizedBox(width: 8),
                   Expanded(
                     child: FilledButton(
                       onPressed: () => _onPressApply(context),
-                      child: const Text('Aplicar'),
+                      child: Text(strings.apply),
                     ),
                   ),
                 ],
