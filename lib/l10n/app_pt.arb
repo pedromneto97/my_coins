@@ -218,5 +218,45 @@
   "apply": "Aplicar",
   "@apply": {
     "description": "Apply"
+  },
+  "invertedReverse": "Reverso invertido",
+  "@invertedReverse": {
+    "description": "Inverted reverse"
+  },
+  "invertedReverseDescription": "Uma moeda com o reverso invertido é uma moeda que foi cunhada com o reverso invertido em relação ao anverso.",
+  "@invertedReverseDescription": {
+    "description": "Inverted reverse description"
+  },
+  "horizontalReverse": "Reverso horizontal",
+  "@horizontalReverse": {
+    "description": "Horizontal reverse"
+  },
+  "horizontalReverseDescription": "Uma moeda com o reverso horizontal é uma moeda que foi cunhada com o reverso na horizontal em relação ao anverso.",
+  "@horizontalReverseDescription": {
+    "description": "Horizontal reverse description"
+  },
+  "doubleStrike": "Batida dupla",
+  "@doubleStrike": {
+    "description": "Double Strike"
+  },
+  "doubleStrikeDescription": "Uma moeda com a batida dupla é uma moeda que foi cunhada com o anverso e o reverso fora de posição.",
+  "@doubleStrikeDescription": {
+    "description": "Double Strike description"
+  },
+  "offCenterCoin": "Moeda boné",
+  "@offCenterCoin": {
+    "description": "Off Center Coin description"
+  },
+  "offCenterCoinDescription": "Uma moeda boné é uma moeda que foi cunhada fora do centro.",
+  "@offCenterCoinDescription": {
+    "description": "Off Center Coin description"
+  },
+  "dieBreak": "Quebra de cunho",
+  "@dieBreak": {
+    "description": "Die Break"
+  },
+  "dieBreakDescription": "Uma moeda com quebra de cunho é uma moeda que foi cunhada com o cunho quebrado.",
+  "@dieBreakDescription": {
+    "description": "Die Break description"
   }
 }
