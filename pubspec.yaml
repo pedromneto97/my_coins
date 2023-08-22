@@ -7,7 +7,7 @@ environment:
   sdk: '>=3.0.6 <4.0.0'
 
 dependencies:
-  auto_route: ^7.8.0
+  auto_route: ^7.8.1
   carousel_slider: ^4.2.1
   cloud_firestore: ^4.8.5
   collection: ^1.17.2
@@ -16,8 +16,8 @@ dependencies:
   firebase_core: ^2.15.1
   firebase_crashlytics: ^3.3.5
   firebase_storage: ^11.2.6
-  firebase_ui_auth: ^1.6.3
-  firebase_ui_localizations: ^1.5.1
+  firebase_ui_auth: ^1.6.4
+  firebase_ui_localizations: ^1.5.2
   firebase_ui_oauth_google: ^1.2.8
   flutter:
     sdk: flutter
