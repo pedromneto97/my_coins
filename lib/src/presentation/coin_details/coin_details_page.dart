@@ -29,7 +29,7 @@ class CoinDetailsPage extends StatelessWidget {
   void _onTapAdd(BuildContext context) => showModalBottomSheet(
         context: context,
         useSafeArea: true,
-        constraints: BoxConstraints(maxHeight: MediaQuery.of(context).size.height * 2 / 3),
+        isScrollControlled: true,
         builder: (context) => AddCoinToCollection(
           coinId: item.id,
           collectionId: collectionId,
